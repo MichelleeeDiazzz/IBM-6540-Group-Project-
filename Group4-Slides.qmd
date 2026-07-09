@@ -14,75 +14,75 @@ editor: visual
 
 ## Problem Definition
 
-- Managerial problem motivating this project: TBD, pending final dataset decision
-- Audience: TBD
+-   Managerial problem motivating this project: TBD, pending final dataset decision
+-   Audience: TBD
 
 ## Research Objectives
 
-- RO1: TBD
-- RO2: TBD
-- RO3: TBD
-- RO4: TBD
+-   RO1: TBD
+-   RO2: TBD
+-   RO3: TBD
+-   RO4: TBD
 
 ## Importance of the Topic
 
-- Why this matters to our target audience: TBD
+-   Why this matters to our target audience: TBD
 
 ## Population
 
-- Description of the population represented in our dataset: TBD
+-   Description of the population represented in our dataset: TBD
 
 ## Sampling / Data Collection
 
-- Source of the data: TBD
-- How the data was originally collected: TBD
+-   Source of the data: TBD
+-   How the data was originally collected: TBD
 
 ## Data Wrangling
 
 ### From Records to Data
 
-- TBD
+-   TBD
 
 ### Tidying the Data
 
-- TBD
+-   TBD
 
 ### Transforming the Data
 
-- TBD
+-   TBD
 
 ## RO1 {background-color="#f5f5f5"}
 
 **Lead: \[Teammate Name\]**
 
-- IV's and DV's: TBD
-- Plan for data wrangling: TBD
-- Plan for data visualization: TBD
+-   IV's and DV's: TBD
+-   Plan for data wrangling: TBD
+-   Plan for data visualization: TBD
 
 ## RO2 {background-color="#f5f5f5"}
 
 **Lead: \[Teammate Name\]**
 
-- IV's and DV's: TBD
-- Plan for data wrangling: TBD
-- Plan for data visualization: TBD
+-   IV's and DV's: TBD
+-   Plan for data wrangling: TBD
+-   Plan for data visualization: TBD
 
 ## RO3 {background-color="#f5f5f5"}
 
 **Lead: Michelle Diaz**
 
-- IV's and DV's: TBD
-- Plan for data wrangling: TBD
-- Plan for data visualization: TBD
+-   IV's and DV's: TBD
+-   Plan for data wrangling: TBD
+-   Plan for data visualization: TBD
 
 ## RO4 {background-color="#f5f5f5"}
 
-**Lead: \[Teammate Name\]**
+**Lead: Frank Renn**
 
-- IV's and DV's: TBD
-- Plan for data wrangling: TBD
-- Plan for data visualization: TBD
+-   IV's and DV's: TBD
+-   Plan for data wrangling: TBD
+-   Plan for data visualization: TBD
 
 ## Conclusion
 
-- Summary and next steps: TBD
+-   Summary and next steps: TBD
