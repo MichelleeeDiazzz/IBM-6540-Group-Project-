@@ -1,0 +1,88 @@
+---
+title: "Project Title: TBD"
+subtitle: "IBM 6540 Term Project Proposal"
+author: "Group 4: Michelle Diaz, Daisy Hernandez, Rosarie Maramag, Frank Renn"
+date: "2026-07-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    embed-resources: true
+editor: visual
+---
+
+## Problem Definition
+
+- Managerial problem motivating this project: TBD, pending final dataset decision
+- Audience: TBD
+
+## Research Objectives
+
+- RO1: TBD
+- RO2: TBD
+- RO3: TBD
+- RO4: TBD
+
+## Importance of the Topic
+
+- Why this matters to our target audience: TBD
+
+## Population
+
+- Description of the population represented in our dataset: TBD
+
+## Sampling / Data Collection
+
+- Source of the data: TBD
+- How the data was originally collected: TBD
+
+## Data Wrangling
+
+### From Records to Data
+
+- TBD
+
+### Tidying the Data
+
+- TBD
+
+### Transforming the Data
+
+- TBD
+
+## RO1 {background-color="#f5f5f5"}
+
+**Lead: \[Teammate Name\]**
+
+- IV's and DV's: TBD
+- Plan for data wrangling: TBD
+- Plan for data visualization: TBD
+
+## RO2 {background-color="#f5f5f5"}
+
+**Lead: \[Teammate Name\]**
+
+- IV's and DV's: TBD
+- Plan for data wrangling: TBD
+- Plan for data visualization: TBD
+
+## RO3 {background-color="#f5f5f5"}
+
+**Lead: Michelle Diaz**
+
+- IV's and DV's: TBD
+- Plan for data wrangling: TBD
+- Plan for data visualization: TBD
+
+## RO4 {background-color="#f5f5f5"}
+
+**Lead: \[Teammate Name\]**
+
+- IV's and DV's: TBD
+- Plan for data wrangling: TBD
+- Plan for data visualization: TBD
+
+## Conclusion
+
+- Summary and next steps: TBD
