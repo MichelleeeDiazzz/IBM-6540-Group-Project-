@@ -1,25 +1,34 @@
 ---
-title: "Research Objective: Working Draft"
+title: "Research Objective: Sales Channel and Spending Patterns"
 author: "Michelle Diaz"
 format: html
 ---
 
 ## Research Objective
 
-This section is in progress as our group finalizes our dataset selection. Our group is currently evaluating two dataset options: a customer marketing response dataset (demographic and purchase history data) and the H&M Personalized Fashion Recommendations dataset (customer, product, and transaction data from a real-world retail brand). Once finalized, this section will state my specific research objective, including the independent and dependent variables I plan to investigate.
+This section investigates whether a customer's sales channel (online vs. in-store) relates to their spending patterns. As part of our group's customer segmentation project using H&M transaction data, this RO aims to segment customers by channel preference and compare spending behavior across those segments.
 
 ## Planned IV's and DV's
 
-- Independent variable(s): to be finalized pending dataset decision
-- Dependent variable(s): to be finalized pending dataset decision
+- Independent variable: sales_channel_id (online vs. store purchase)
+- Dependent variable: price (per transaction) and/or total spend per customer
 
 ## Data Wrangling Plan
 
-Initial data wrangling will include importing the raw data file(s), checking for missing values and inconsistent categories, and standardizing variable formats before analysis.
+- Join transaction-level data (sales_channel_id, price) with customer and article data as needed
+- Check sales_channel_id for correct coding and confirm both channel categories are represented
+- Aggregate price to customer-level total spend, if analyzing at the customer rather than transaction level
+- Check for and address any missing or invalid price values
 
 ## Data Visualization Plan
-ß
-Planned visualizations will depend on the final variables selected, but will likely include distribution plots for key variables and comparison plots across relevant groups.
+
+- Boxplot or violin plot comparing price distribution across the two sales channels
+- Bar chart comparing average spend per customer by channel
+- Consider a density plot to show spending distribution shape by channel
+
+## Notes
+
+This RO uses a sampled subset of the H&M transactions_train.csv data (due to the full file's size), joined with customer and article metadata as needed.
 
 
 ## Github Repo 

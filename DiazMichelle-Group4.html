@@ -8,7 +8,7 @@
 
 <meta name="author" content="Michelle Diaz">
 
-<title>Research Objective: Working Draft</title>
+<title>Research Objective: Sales Channel and Spending Patterns</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -50,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Research Objective: Working Draft</h1>
+<h1 class="title">Research Objective: Sales Channel and Spending Patterns</h1>
 </div>
 
 
@@ -75,22 +75,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="research-objective" class="level2">
 <h2 class="anchored" data-anchor-id="research-objective">Research Objective</h2>
-<p>This section is in progress as our group finalizes our dataset selection. Our group is currently evaluating two dataset options: a customer marketing response dataset (demographic and purchase history data) and the H&amp;M Personalized Fashion Recommendations dataset (customer, product, and transaction data from a real-world retail brand). Once finalized, this section will state my specific research objective, including the independent and dependent variables I plan to investigate.</p>
+<p>This section investigates whether a customer’s sales channel (online vs.&nbsp;in-store) relates to their spending patterns. As part of our group’s customer segmentation project using H&amp;M transaction data, this RO aims to segment customers by channel preference and compare spending behavior across those segments.</p>
 </section>
 <section id="planned-ivs-and-dvs" class="level2">
 <h2 class="anchored" data-anchor-id="planned-ivs-and-dvs">Planned IV’s and DV’s</h2>
 <ul>
-<li>Independent variable(s): to be finalized pending dataset decision</li>
-<li>Dependent variable(s): to be finalized pending dataset decision</li>
+<li>Independent variable: sales_channel_id (online vs.&nbsp;store purchase)</li>
+<li>Dependent variable: price (per transaction) and/or total spend per customer</li>
 </ul>
 </section>
 <section id="data-wrangling-plan" class="level2">
 <h2 class="anchored" data-anchor-id="data-wrangling-plan">Data Wrangling Plan</h2>
-<p>Initial data wrangling will include importing the raw data file(s), checking for missing values and inconsistent categories, and standardizing variable formats before analysis.</p>
+<ul>
+<li>Join transaction-level data (sales_channel_id, price) with customer and article data as needed</li>
+<li>Check sales_channel_id for correct coding and confirm both channel categories are represented</li>
+<li>Aggregate price to customer-level total spend, if analyzing at the customer rather than transaction level</li>
+<li>Check for and address any missing or invalid price values</li>
+</ul>
 </section>
 <section id="data-visualization-plan" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization-plan">Data Visualization Plan</h2>
-<p>ß Planned visualizations will depend on the final variables selected, but will likely include distribution plots for key variables and comparison plots across relevant groups.</p>
+<ul>
+<li>Boxplot or violin plot comparing price distribution across the two sales channels</li>
+<li>Bar chart comparing average spend per customer by channel</li>
+<li>Consider a density plot to show spending distribution shape by channel</li>
+</ul>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>This RO uses a sampled subset of the H&amp;M transactions_train.csv data (due to the full file’s size), joined with customer and article metadata as needed.</p>
 </section>
 <section id="github-repo" class="level2">
 <h2 class="anchored" data-anchor-id="github-repo">Github Repo</h2>
