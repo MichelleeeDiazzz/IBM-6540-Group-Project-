@@ -1,0 +1,32 @@
+---
+title: "Research Objective: Working Draft"
+author: "Hernandez,Daisy"
+format:
+  html:
+    toc: true
+    toc-location: left
+    theme: cosmo
+    embed-resources: true
+editor: visual
+---
+
+## Research Objective
+
+This section is in progress as our group finalizes our dataset selection. Our group is considering two dataset options: a customer marketing response dataset (demographic and purchase data) and the H&M Personalized Fashion Recommendations dataset (customer, product, and transaction data from a real-world retail brand). Once finalized, this section will state my specific research question, including the independent and dependent variables I plan to investigate.
+
+## Planned IV's and DV's
+
+-   **Independent variable(s):** to be finalized pending dataset decision
+-   **Dependent variable(s):** to be finalized pending dataset decision
+
+## Data Wrangling Plan
+
+Initial data wrangling will include importing the raw data file(s), checking for missing values/inconsistent categories, and standardizing variable formats before analysis.
+
+## Data Visualization Plan
+
+Planned visualizations will depend on the final variables selected, but will likely include distribution plots for key variables and comparison plots across relevant groups.
+
+## Github Repo
+
+<https://github.com/MichleeeDiazzz/IBM-6540-Group-Project->
