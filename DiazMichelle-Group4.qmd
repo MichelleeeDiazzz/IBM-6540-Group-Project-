@@ -1,16 +1,29 @@
 ---
-title: "RO [X]: [working title]"
+title: "Research Objective: Working Draft"
 author: "Michelle Diaz"
 format: html
 ---
 
 ## Research Objective
-[1-2 sentences, even a placeholder]
+
+This section is in progress as our group finalizes our dataset selection. Our group is currently evaluating two dataset options: a customer marketing response dataset (demographic and purchase history data) and the H&M Personalized Fashion Recommendations dataset (customer, product, and transaction data from a real-world retail brand). Once finalized, this section will state my specific research objective, including the independent and dependent variables I plan to investigate.
 
 ## Planned IV's and DV's
-[bullet list, can be rough]
----
 
-GitHub Repo:  https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-
+- Independent variable(s): to be finalized pending dataset decision
+- Dependent variable(s): to be finalized pending dataset decision
+
+## Data Wrangling Plan
+
+Initial data wrangling will include importing the raw data file(s), checking for missing values and inconsistent categories, and standardizing variable formats before analysis.
+
+## Data Visualization Plan
+ß
+Planned visualizations will depend on the final variables selected, but will likely include distribution plots for key variables and comparison plots across relevant groups.
+
+
+## Github Repo 
+https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-
+
 
 
