@@ -1,0 +1,17 @@
+---
+title: "Term Project Repoert "
+subtitle: "IBM 6540 Term Project Proposal"
+author: "Group [#]: Michelle Diaz, [Name], [Name], [Name]"
+date: "2026-07-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    incremental: false
+    toc: false
+    logo: images/cpp_logo.png
+    footer: "IBM 6540 - Marketing Data Science"
+    embed-resources: true
+editor: visual
+---
