@@ -1,17 +1,16 @@
 ---
-title: "Term Project Repoert "
-subtitle: "IBM 6540 Term Project Proposal"
-author: "Group [#]: Michelle Diaz, [Name], [Name], [Name]"
-date: "2026-07-14"
-format:
-  revealjs:
-    theme: simple
-    slide-number: true
-    transition: slide
-    incremental: false
-    toc: false
-    logo: images/cpp_logo.png
-    footer: "IBM 6540 - Marketing Data Science"
-    embed-resources: true
-editor: visual
+title: "RO [X]: [working title]"
+author: "Michelle Diaz"
+format: html
 ---
+
+## Research Objective
+[1-2 sentences, even a placeholder]
+
+## Planned IV's and DV's
+[bullet list, can be rough]
+---
+
+GitHub Repo:  https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-
+
+
