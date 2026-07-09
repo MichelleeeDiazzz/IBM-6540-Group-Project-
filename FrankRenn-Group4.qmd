@@ -1,0 +1,42 @@
+---
+title: "Group Project - H&M RFM Segmentation"
+author: "Frank Renn"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-expand: 1
+    toc-location: right-body
+    toc-title: "Contents"
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    theme: cosmo
+    highlight-style: github
+    df-print: paged
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+  freeze: true
+---
+
+## Research Objective:
+
+To segment the H&M customer base by analyzing their Recency, Frequency, and Monetary (RFM) metrics, identifying high-value loyalists and at-risk segments to help marketing managers allocate budgets and tailor promotional strategies effectively.
+
+## Planned IV's and DV's:
+
+In this unsupervised K-Means clustering model, the independent variables (IVs) are the calculated Recency, Frequency, and Monetary features. Since clustering is unsupervised and lacks ground truth, there is no traditional dependent variable (DV), but the resulting "cluster label" will serve as the target for subsequent profiling and visualization.
+
+## Data Wrangling Plan:
+
+I will use the dplyr package in R to aggregate individual transaction records to the customer level to calculate the baseline RFM metrics. 
+
+## Data Visualization Plan:
+
+I plan to scatter plots colored by cluster assignments to illustrate the grouping effects visually. 
+
+## Github Repo:
+<https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project->
