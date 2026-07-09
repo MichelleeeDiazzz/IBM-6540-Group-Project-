@@ -1,0 +1,28 @@
+---
+title: "A Machine Learning Study of H&M Customer Behavior"
+author: "Your Name"
+date: today
+format:
+
+  html:
+    toc: true
+    toc-depth: 4
+    toc-expand: 1
+    toc-location: right-body
+    toc-title: "Contents"
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    theme: cosmo
+    highlight-style: github
+    df-print: paged
+    embed-resources: true
+execute:
+  warning: false
+  message: false
+  freeze: true
+---
+
+# **Data Set:** 
+
+https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/data
