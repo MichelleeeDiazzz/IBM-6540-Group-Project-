@@ -80,7 +80,7 @@ Instead of treating all shoppers the same, the team can identify groups such as 
 This can support better promotions, retention strategies, product recommendations, and campaign timing.
 :::
 
-## Population 
+## Population {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
 
 ::: {.content-panel}
 The population represented in this dataset is H&M's online and in-store customer base, captured through their purchase transaction history.
