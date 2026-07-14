@@ -1,10 +1,10 @@
 ---
-title: "H&M Customer Segmentation"
 format:
   revealjs:
     theme:
       - simple
       - hm-style.scss
+    title-slide: false
     transition: fade
     background-transition: fade
     slide-number: true
@@ -20,7 +20,21 @@ execute:
   message: false
 ---
 
-## Problem Definition
+## {.cover-slide background-image="assets/why-topic-matters.png" background-size="cover" background-opacity="0.22"}
+
+::: {.cover-panel}
+![](assets/hm-logo.png){.hm-cover-logo}
+
+::: {.cover-title}
+H&M Customer Segmentation
+:::
+
+::: {.cover-members}
+**Group Members:** Michelle Diaz · Frank Renn · Daisy Herandez · Rosarie Maramag · Gigi Brunel
+:::
+:::
+
+## Problem Definition {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
 
 ::: {.content-panel}
 **Audience:** H&M marketing, CRM, and merchandising teams.
@@ -65,13 +79,6 @@ Instead of treating all shoppers the same, the team can identify groups such as 
 
 This can support better promotions, retention strategies, product recommendations, and campaign timing.
 :::
-## Why This Topic Matters
-
-Customer segmentation helps H&M move from broad marketing to more targeted decisions.
-
-Instead of treating all shoppers the same, the team can identify groups such as high-value loyal customers, occasional buyers, inactive customers, and customers with specific timing or channel preferences.
-
-This can support better promotions, retention strategies, product recommendations, and campaign timing.
 
 ## Population 
 
