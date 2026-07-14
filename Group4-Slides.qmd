@@ -1,32 +1,77 @@
 ---
-title: "Project Title: TBD"
-subtitle: "IBM 6540 Term Project Proposal"
-author: "Group 4: Michelle Diaz, Daisy Hernandez, Rosarie Maramag, Frank Renn"
-date: "2026-07-14"
+title: "H&M Customer Segmentation"
 format:
   revealjs:
-    theme: simple
+    theme:
+      - simple
+      - hm-style.scss
+    transition: fade
+    background-transition: fade
     slide-number: true
-    transition: slide
-    embed-resources: true
-editor: visual
+    controls: true
+    progress: true
+    center: false
+    width: 1600
+    height: 900
+    margin: 0.06
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
-## Problem Definition
+## Problem Definition {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
 
--   Managerial problem motivating this project: TBD, pending final dataset decision
--   Audience: TBD
+::: {.content-panel}
+**Audience:** H&M marketing, CRM, and merchandising teams.
 
-## Research Objectives
+**Problem:** H&M has a large transaction dataset, but raw purchase records do not directly explain which customers are most valuable, how they shop, or when they are most likely to buy.
 
--   RO1: TBD
--   RO2: TBD
--   RO3: TBD
--   RO4: TBD
+**Project focus:** Use customer segmentation to turn transaction history into actionable marketing insights.
+:::
 
-## Importance of the Topic
+## Research Objectives {background-image="assets/research-objectives.png" background-size="cover" background-opacity="0.16" .objectives-slide}
 
--   Why this matters to our target audience: TBD
+::: {.content-panel .wide-panel}
+| RO | Research Objective | Team Member |
+|------------------------|------------------------|------------------------|
+| RO1 | TBD | Team |
+| RO2 | TBD | Team |
+| RO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
+| RO4 | How can customers be segmented using RFM value? | Frank |
+| RO5 | Do purchase timing patterns differ across customer segments? | Daisy |
+:::
+
+## Importance of the Topic {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel}
+This project gives H&M a practical way to understand customers using real purchase data.
+
+The findings can help the audience:
+
+-   Target high-value customers more effectively
+-   Re-engage inactive or low-frequency customers
+-   Compare online and store behavior
+-   Time campaigns based on segment-level purchase patterns
+-   Support customer-focused decision making
+:::
+
+## Why This Topic Matters {background-image="assets/why-topic-matters.png" background-size="cover" background-opacity="0.18" .matters-slide}
+
+::: {.content-panel}
+Customer segmentation helps H&M move from broad marketing to more targeted decisions.
+
+Instead of treating all shoppers the same, the team can identify groups such as high-value loyal customers, occasional buyers, inactive customers, and customers with specific timing or channel preferences.
+
+This can support better promotions, retention strategies, product recommendations, and campaign timing.
+:::
+## Why This Topic Matters
+
+Customer segmentation helps H&M move from broad marketing to more targeted decisions.
+
+Instead of treating all shoppers the same, the team can identify groups such as high-value loyal customers, occasional buyers, inactive customers, and customers with specific timing or channel preferences.
+
+This can support better promotions, retention strategies, product recommendations, and campaign timing.
 
 ## Population
 
@@ -75,13 +120,23 @@ editor: visual
 -   Plan for data wrangling: TBD
 -   Plan for data visualization: TBD
 
-## RO4 {background-color="#f5f5f5"}
+## RO4: RFM Value Segmentation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-**Lead: Frank Renn**
+::: {.content-panel}
 
--   IV's and DV's: TBD
--   Plan for data wrangling: TBD
--   Plan for data visualization: TBD
+**Research Objective:** How can customers be segmented using RFM value?  
+**Lead:** Frank Renn
+
+**IV’s and DV’s:**  
+IVs: Recency, Frequency, Monetary value  
+DV: Customer segment / RFM value group
+
+**Plan for data wrangling:**  
+Aggregate transactions by customer ID, calculate each customer’s most recent purchase, purchase count, and total spending, then assign RFM scores or clusters.
+
+**Plan for data visualization:**  
+Use a segment bar chart, RFM summary table, and scatter plot of frequency vs. monetary value colored by segment.
+:::
 
 ## Conclusion
 
