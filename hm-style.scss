@@ -115,6 +115,12 @@ $presentation-line-height: 1.35;
   box-shadow: 0 24px 60px rgba(17, 17, 17, 0.13);
 }
 
+.reveal .content-panel p,
+.reveal .content-panel li {
+  font-size: 0.95em;
+  line-height: 1.35;
+}
+
 .reveal .content-panel p {
   margin-bottom: 0.55em;
 }
@@ -125,6 +131,29 @@ $presentation-line-height: 1.35;
 
 .reveal .content-panel li {
   margin-bottom: 0.32em;
+}
+
+/* Optional smaller content panel sizes */
+
+.reveal .content-panel.panel-small p,
+.reveal .content-panel.panel-small li {
+  font-size: 0.84em;
+  line-height: 1.32;
+}
+
+.reveal .content-panel.panel-xs p,
+.reveal .content-panel.panel-xs li {
+  font-size: 0.6em;
+  line-height: 1.28;
+}
+
+.reveal .content-panel.panel-compact {
+  padding: 36px 48px;
+}
+
+.reveal .content-panel.panel-compact p,
+.reveal .content-panel.panel-compact li {
+  margin-bottom: 0.22em;
 }
 
 /* Cover slide */

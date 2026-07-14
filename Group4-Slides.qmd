@@ -103,7 +103,7 @@ The population represented in this dataset is H&M's online and in-store customer
 
 ## Data Wrangling 
 
-::: {.content-panel}
+::: {.content-panel .panel-xs}
 **From Records to Data**
 
 - Raw data arrives as three separate files: customer metadata, product/article metadata, and transaction records
@@ -141,13 +141,12 @@ The population represented in this dataset is H&M's online and in-store customer
 
 ## RO3: Sales Channel and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-::: {.content-panel}
+::: {.content-panel .panel-small}
 **Research Objective:** Does the sales channel (online vs. store) relate to spending patterns?  
 **Lead:** Michelle Diaz
 
 **IV's and DV's:**  
 IV: Sales channel (online vs. store)  
-DV: Price / basket size (spend per transaction or per customer)
 DV: Price / basket size (spend per transaction or per customer)
 
 **Plan for data wrangling:**  
