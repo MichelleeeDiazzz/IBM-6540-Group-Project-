@@ -1,0 +1,36 @@
+---
+title: "Project Title: TBD"
+subtitle: "IBM 6540 Term Project Proposal"
+author: "Group 4: Michelle Diaz"
+date: "2026-07-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: slide
+    embed-resources: true
+editor: visual
+---
+
+## RO3 {background-color="#f5f5f5"}
+
+**Research Objective:** Does the sales channel (online vs. store) relate to spending patterns?
+
+### IV's and DV's
+
+- IV: sales_channel_id (online vs. store)
+- DV: price / basket size (spend per transaction or per customer)
+
+### Plan for Data Wrangling
+
+- Join transaction-level data with customer and article metadata as needed
+- Confirm sales_channel_id is correctly coded and both channels are represented
+- Aggregate price to customer-level total spend for customer-level comparisons
+- Check for and address missing or invalid price values
+
+### Plan for Data Visualization
+
+- Boxplot or violin plot comparing price distribution across sales channels
+- Bar chart comparing average spend per customer by channel
+
+##  {background-color="#f5f5f5"}

@@ -20,7 +20,7 @@ execute:
   message: false
 ---
 
-## Problem Definition {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
+## Problem Definition
 
 ::: {.content-panel}
 **Audience:** H&M marketing, CRM, and merchandising teams.
@@ -30,7 +30,7 @@ execute:
 **Project focus:** Use customer segmentation to turn transaction history into actionable marketing insights.
 :::
 
-## Research Objectives {background-image="assets/research-objectives.png" background-size="cover" background-opacity="0.16" .objectives-slide}
+## Research Objectives
 
 ::: {.content-panel .wide-panel}
 | RO | Research Objective | Team Member |
@@ -73,28 +73,48 @@ Instead of treating all shoppers the same, the team can identify groups such as 
 
 This can support better promotions, retention strategies, product recommendations, and campaign timing.
 
-## Population
+## Population 
 
--   Description of the population represented in our dataset: TBD
+::: {.content-panel}
+The population represented in this dataset is H&M's online and in-store customer base, captured through their purchase transaction history.
+
+- Over 1.3 million unique customers
+- Customer attributes include age, club membership status, and fashion news subscription preference
+- Over 100,000 distinct products (articles), described by category, garment type, color, and department
+- Transactions span both online and physical store sales channels
+:::
 
 ## Sampling / Data Collection
 
--   Source of the data: TBD
--   How the data was originally collected: TBD
+::: {.content-panel}
+**Source:** H&M Group, released publicly via a Kaggle competition (Personalized Fashion Recommendations).
 
-## Data Wrangling
+**Original collection:** Real transaction records logged by H&M's retail systems across online and store sales channels.
 
-### From Records to Data
+**Our approach:** Given the full transaction file's size (over 31 million records), our group is working with a random sample of transactions, joined with the full customer and article metadata, to make analysis feasible while preserving the overall structure of customer behavior.
+:::
 
--   TBD
+## Data Wrangling 
 
-### Tidying the Data
+::: {.content-panel}
+**From Records to Data**
 
--   TBD
+- Raw data arrives as three separate files: customer metadata, product/article metadata, and transaction records
+- Given the size of the full transaction file (31M+ records), our group works with a random sample of transactions, joined with the full customer and article tables
+- Files are imported into R and inspected for structure, column types, and row counts before any cleaning begins
 
-### Transforming the Data
+**Tidying the Data**
 
--   TBD
+- Check each table for missing values (e.g., customer age, price) and decide on an appropriate handling approach (imputation, exclusion, or flagging)
+- Standardize categorical variables (e.g., sales channel codes, membership status) to consistent, labeled categories
+- Remove or address any duplicate records
+
+**Transforming the Data**
+
+- Join transaction data with customer and article metadata using customer_id and article_id as keys
+- Create derived variables needed for specific RO's (e.g., total spend per customer, RFM scores, purchase date components)
+- Aggregate transaction-level data to the customer level where needed for segmentation analysis
+:::
 
 ## RO1 {background-color="#f5f5f5"}
 
@@ -112,18 +132,27 @@ This can support better promotions, retention strategies, product recommendation
 -   Plan for data wrangling: TBD
 -   Plan for data visualization: TBD
 
-## RO3 {background-color="#f5f5f5"}
+## RO3: Sales Channel and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-**Lead: Michelle Diaz**
+::: {.content-panel}
+**Research Objective:** Does the sales channel (online vs. store) relate to spending patterns?  
+**Lead:** Michelle Diaz
 
--   IV's and DV's: TBD
--   Plan for data wrangling: TBD
--   Plan for data visualization: TBD
+**IV's and DV's:**  
+IV: Sales channel (online vs. store)  
+DV: Price / basket size (spend per transaction or per customer)
+DV: Price / basket size (spend per transaction or per customer)
+
+**Plan for data wrangling:**  
+Join transaction-level data with customer and article metadata as needed, confirm sales_channel_id is correctly coded, aggregate price to customer-level spend, and check for missing or invalid values.
+
+**Plan for data visualization:**  
+Boxplot or violin plot comparing price distribution across channels, and a bar chart comparing average spend per customer by channel.
+:::
 
 ## RO4: RFM Value Segmentation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel}
-
 **Research Objective:** How can customers be segmented using RFM value?  
 **Lead:** Frank Renn
 
