@@ -127,34 +127,19 @@ The population represented in this dataset is H&M's online and in-store customer
 
 ::: {.content-panel .panel-small}
 
-**Research Objective:**  
-Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?
+**Research Objective:** Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?
 
 **Lead:** Gigi Brunel
 
-**IV's and DV's**
+**IV's and DV's:**  
+IV: Fashion News Subscription Status (None, Regularly, Monthly)  
+DV: Total Customer Spending / Purchase Frequency
 
-IV:
-- Fashion News Subscription Status
-  - NONE
-  - Regularly
-  - Monthly
+**Plan for data wrangling:**  
+Join customer and transaction tables using `customer_id`. Clean inconsistent Fashion News labels, handle missing subscription values, and aggregate transaction data to calculate each customer's total spending and purchase frequency.
 
-DV:
-- Total Customer Spending
-- Purchase Frequency
-
-**Plan for data wrangling**
-
-- Join customer and transaction tables using customer_id.
-- Clean inconsistent Fashion News labels.
-- Remove or flag missing subscription values.
-- Aggregate transaction data to calculate total spend and purchase frequency for each customer.
-
-**Plan for data visualization**
-
-- Bar chart comparing average spending by subscription status.
-- Boxplot showing purchase frequency across subscription groups.
+**Plan for data visualization:**  
+A bar chart comparing average customer spending by subscription status and a box plot comparing purchase frequency across subscription groups.
 
 :::
 
