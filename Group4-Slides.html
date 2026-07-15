@@ -313,6 +313,20 @@ Aggregate transactions by customer ID, calculate each customer’s most recent p
 Use a segment bar chart, RFM summary table, and scatter plot of frequency vs.&nbsp;monetary value colored by segment.</p>
 </div>
 </section>
+<section id="ro5-purchase-timing-patterns-across-segments" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>RO5: Purchase Timing Patterns Across Segments</h2>
+<div class="content-panel panel-small">
+<p><strong>Research Objective:</strong> Do purchase timing patterns differ across customer segments?<br>
+<strong>Lead:</strong> Daisy Hernandez</p>
+<p><strong>IV’s and DV’s:</strong><br>
+IV: Customer segment (e.g., RFM group or demographic segment)<br>
+DV: Purchase timing (day of week, month/season, time between purchases)</p>
+<p><strong>Plan for data wrangling:</strong><br>
+Extract date components (day of week, month, season) from transaction timestamps, join transactions with customer segment labels, and aggregate purchase counts and average time-between-purchases by segment and time period.</p>
+<p><strong>Plan for data visualization:</strong><br>
+A heatmap of purchase frequency by day of week and segment, and a line chart showing purchase volume trends over time (by month/season) across customer segments.</p>
+</div>
+</section>
 <section id="conclusion" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>Conclusion</h2>
 <div class="content-panel">

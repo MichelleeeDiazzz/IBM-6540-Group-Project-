@@ -16,8 +16,8 @@ This section is in progress as our group finalizes our dataset selection. Our gr
 
 ## Planned IV's and DV's
 
--   **Independent variable(s):** to be finalized pending dataset decision
--   **Dependent variable(s):** to be finalized pending dataset decision
+- **Independent variable(s):** to be finalized pending dataset decision
+- **Dependent variable(s):** to be finalized pending dataset decision
 
 ## Data Wrangling Plan
 
