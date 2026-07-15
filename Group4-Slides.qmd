@@ -44,7 +44,7 @@ H&M Customer Segmentation
 **Project focus:** Use customer segmentation to turn transaction history into actionable marketing insights.
 :::
 
-## Research Objectives
+## Research Objectives {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
 
 ::: {.content-panel .wide-panel}
 | RO | Research Objective | Team Member |
@@ -91,7 +91,7 @@ The population represented in this dataset is H&M's online and in-store customer
 - Transactions span both online and physical store sales channels
 :::
 
-## Sampling / Data Collection
+## Sampling / Data Collection {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel}
 **Source:** H&M Group, released publicly via a Kaggle competition (Personalized Fashion Recommendations).
@@ -101,7 +101,7 @@ The population represented in this dataset is H&M's online and in-store customer
 **Our approach:** Given the full transaction file's size (over 31 million records), our group is working with a random sample of transactions, joined with the full customer and article metadata, to make analysis feasible while preserving the overall structure of customer behavior.
 :::
 
-## Data Wrangling 
+## Data Wrangling {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-xs}
 **From Records to Data**
@@ -191,7 +191,7 @@ Aggregate transactions by customer ID, calculate each customer’s most recent p
 Use a segment bar chart, RFM summary table, and scatter plot of frequency vs. monetary value colored by segment.
 :::
 
-## Conclusion
+## Conclusion {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel}
 

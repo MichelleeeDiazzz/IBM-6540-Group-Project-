@@ -149,7 +149,7 @@
 <p><strong>Project focus:</strong> Use customer segmentation to turn transaction history into actionable marketing insights.</p>
 </div>
 </section>
-<section id="research-objectives" class="slide level2">
+<section id="research-objectives" class="slide level2 problem-slide" data-background-image="assets/problem-definition.png" data-background-size="cover" data-background-opacity="0.18">
 <h2>Research Objectives</h2>
 <div class="content-panel wide-panel">
 <table class="caption-top">
@@ -168,13 +168,13 @@
 <tbody>
 <tr class="odd">
 <td>RO1</td>
-<td>TBD</td>
-<td>Team</td>
+<td>Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?</td>
+<td>Gigi</td>
 </tr>
 <tr class="even">
 <td>RO2</td>
-<td>TBD</td>
-<td>Team</td>
+<td>Do customer age groups and membership statuses relate to variations in spending patterns?</td>
+<td>Rosarie</td>
 </tr>
 <tr class="odd">
 <td>RO3</td>
@@ -229,7 +229,7 @@
 </ul>
 </div>
 </section>
-<section id="sampling-data-collection" class="slide level2">
+<section id="sampling-data-collection" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>Sampling / Data Collection</h2>
 <div class="content-panel">
 <p><strong>Source:</strong> H&amp;M Group, released publicly via a Kaggle competition (Personalized Fashion Recommendations).</p>
@@ -237,7 +237,7 @@
 <p><strong>Our approach:</strong> Given the full transaction file’s size (over 31 million records), our group is working with a random sample of transactions, joined with the full customer and article metadata, to make analysis feasible while preserving the overall structure of customer behavior.</p>
 </div>
 </section>
-<section id="data-wrangling" class="slide level2">
+<section id="data-wrangling" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>Data Wrangling</h2>
 <div class="content-panel panel-xs">
 <p><strong>From Records to Data</strong></p>
@@ -260,23 +260,30 @@
 </ul>
 </div>
 </section>
-<section id="ro1" class="slide level2" data-background-color="#f5f5f5">
-<h2>RO1</h2>
-<p><strong>Lead: [Teammate Name]</strong></p>
-<ul>
-<li>IV’s and DV’s: TBD</li>
-<li>Plan for data wrangling: TBD</li>
-<li>Plan for data visualization: TBD</li>
-</ul>
+<section id="ro1-fashion-news-subscription-and-spending" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>RO1: Fashion News Subscription and Spending</h2>
+<div class="content-panel panel-small">
+<p><strong>Research Objective:</strong> Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?</p>
+<p><strong>Lead:</strong> Gigi Brunel</p>
+<p><strong>IV’s and DV’s:</strong><br>
+IV: Fashion News Subscription Status (None, Regularly, Monthly)<br>
+DV: Total Customer Spending / Purchase Frequency</p>
+<p><strong>Plan for data wrangling:</strong><br>
+Join customer and transaction tables using <code>customer_id</code>. Clean inconsistent Fashion News labels, handle missing subscription values, and aggregate transaction data to calculate each customer’s total spending and purchase frequency.</p>
+<p><strong>Plan for data visualization:</strong><br>
+A bar chart comparing average customer spending by subscription status and a box plot comparing purchase frequency across subscription groups.</p>
+</div>
 </section>
-<section id="ro2" class="slide level2" data-background-color="#f5f5f5">
-<h2>RO2</h2>
-<p><strong>Lead: [Teammate Name]</strong></p>
-<ul>
-<li>IV’s and DV’s: TBD</li>
-<li>Plan for data wrangling: TBD</li>
-<li>Plan for data visualization: TBD</li>
-</ul>
+<section id="ro2-age-loyalty-and-spending" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>RO2: Age, Loyalty, and Spending</h2>
+<div class="content-panel panel-small">
+<p><strong>Research Objective:</strong> Do customer age groups and membership statuses relate to variations in spending patterns?<br>
+<strong>Lead:</strong> Rosarie Maramag</p>
+<p><strong>IV’s and DV’s:</strong> IV: <code>Age</code> (Continuous/Numerical) and <code>Membership Status</code> (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)<br>
+DV: <code>Transaction Amount</code> / <code>Purchase Frequency</code></p>
+<p><strong>Plan for data wrangling:</strong> Isolate individual customer records and link their transaction history using unique Customer IDs. Handle missing or null values in <code>Age</code> (~15,861 missing) and <code>Membership Status</code> (~6,062 missing). Convert continuous <code>Age</code> into categorical brackets (e.g., 18–25, 26–40, 41–60, 61+) and aggregate total transaction spend per customer.</p>
+<p><strong>Plan for data visualization:</strong> A stacked bar chart showing the distribution of Membership Status across different Age Brackets, and a box plot comparing total transaction spend (DV) across the customer segments to highlight high-value groups.</p>
+</div>
 </section>
 <section id="ro3-sales-channel-and-spending" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>RO3: Sales Channel and Spending</h2>
@@ -306,11 +313,16 @@ Aggregate transactions by customer ID, calculate each customer’s most recent p
 Use a segment bar chart, RFM summary table, and scatter plot of frequency vs.&nbsp;monetary value colored by segment.</p>
 </div>
 </section>
-<section id="conclusion" class="slide level2">
+<section id="conclusion" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>Conclusion</h2>
+<div class="content-panel">
 <ul>
-<li>Summary and next steps: TBD</li>
+<li>This project applies customer segmentation techniques to H&amp;M transaction data.</li>
+<li>Each research objective examines a different aspect of customer behavior.</li>
+<li>Findings will help identify meaningful customer segments for targeted marketing.</li>
+<li>The next phase will focus on data cleaning, visualization, and statistical analysis to answer each research objective.</li>
 </ul>
+</div>
 
 </section>
     </div>
