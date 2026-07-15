@@ -49,7 +49,7 @@ H&M Customer Segmentation
 ::: {.content-panel .wide-panel}
 | RO | Research Objective | Team Member |
 |------------------------|------------------------|------------------------|
-| RO1 | TBD | Team |
+| RO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
 | RO2 | Do customer age groups and membership statuses relate to variations in spending patterns? | Rosarie |
 | RO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
 | RO4 | How can customers be segmented using RFM value? | Frank |
@@ -123,13 +123,40 @@ The population represented in this dataset is H&M's online and in-store customer
 - Aggregate transaction-level data to the customer level where needed for segmentation analysis
 :::
 
-## RO1 {background-color="#f5f5f5"}
+## RO1: Fashion News Subscription and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-**Lead: \[Teammate Name\]**
+::: {.content-panel .panel-small}
 
--   IV's and DV's: TBD
--   Plan for data wrangling: TBD
--   Plan for data visualization: TBD
+**Research Objective:**  
+Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?
+
+**Lead:** Gigi Brunel
+
+**IV's and DV's**
+
+IV:
+- Fashion News Subscription Status
+  - NONE
+  - Regularly
+  - Monthly
+
+DV:
+- Total Customer Spending
+- Purchase Frequency
+
+**Plan for data wrangling**
+
+- Join customer and transaction tables using customer_id.
+- Clean inconsistent Fashion News labels.
+- Remove or flag missing subscription values.
+- Aggregate transaction data to calculate total spend and purchase frequency for each customer.
+
+**Plan for data visualization**
+
+- Bar chart comparing average spending by subscription status.
+- Boxplot showing purchase frequency across subscription groups.
+
+:::
 
 ## RO2: Age, Loyalty, and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
@@ -181,4 +208,11 @@ Use a segment bar chart, RFM summary table, and scatter plot of frequency vs. mo
 
 ## Conclusion
 
--   Summary and next steps: TBD
+::: {.content-panel}
+
+- This project applies customer segmentation techniques to H&M transaction data.
+- Each research objective examines a different aspect of customer behavior.
+- Findings will help identify meaningful customer segments for targeted marketing.
+- The next phase will focus on data cleaning, visualization, and statistical analysis to answer each research objective.
+
+:::
