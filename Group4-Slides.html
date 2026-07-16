@@ -301,16 +301,16 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 </section>
 <section id="ro4-rfm-value-segmentation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>RO4: RFM Value Segmentation</h2>
-<div class="content-panel">
+<div class="content-panel panel-small">
 <p><strong>Research Objective:</strong> How can customers be segmented using RFM value?<br>
 <strong>Lead:</strong> Frank Renn</p>
 <p><strong>IV’s and DV’s:</strong><br>
 IVs: Recency, Frequency, Monetary value<br>
 DV: Customer segment / RFM value group</p>
 <p><strong>Plan for data wrangling:</strong><br>
-Aggregate transactions by customer ID, calculate each customer’s most recent purchase, purchase count, and total spending, then assign RFM scores or clusters.</p>
+Aggregate transaction data by customer ID, calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, missing value handling, log transformation, and scaling so the RFM variables are ready for clustering.</p>
 <p><strong>Plan for data visualization:</strong><br>
-Use a segment bar chart, RFM summary table, and scatter plot of frequency vs.&nbsp;monetary value colored by segment.</p>
+Use a segment bar chart to compare customer counts, an RFM summary table to explain each segment’s average recency, frequency, and monetary value, and a scatter plot of frequency vs.&nbsp;monetary value colored by cluster. These visuals can support marketing actions such as retention, re-engagement, promotion targeting, and campaign timing.</p>
 </div>
 </section>
 <section id="ro5-purchase-timing-patterns-across-segments" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
