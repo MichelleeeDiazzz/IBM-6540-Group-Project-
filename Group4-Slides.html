@@ -308,7 +308,7 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 IVs: Recency, Frequency, Monetary value<br>
 DV: Customer segment / RFM value group</p>
 <p><strong>Plan for data wrangling:</strong><br>
-Aggregate transaction data by customer ID, calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, missing value handling, log transformation, and scaling so the RFM variables are ready for clustering.</p>
+Aggregate transaction data by customer ID to calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, log transformation, scaling, and time-based train/validation split before running K-means clustering.</p>
 <p><strong>Plan for data visualization:</strong><br>
 Use a segment bar chart to show the percentage of customers in each group, an RFM summary table to compare average recency, frequency, and monetary value, and a scatter plot of frequency vs.&nbsp;monetary value colored by segment. These segments can support VIP retention, personalized recommendations, promotion targeting, and re-engagement campaigns.</p>
 </div>
