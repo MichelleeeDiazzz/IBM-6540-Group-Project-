@@ -188,8 +188,7 @@ DV: Customer segment / RFM value group
 Aggregate transaction data by customer ID, calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, missing value handling, log transformation, and scaling so the RFM variables are ready for clustering.
 
 **Plan for data visualization:**  
-Use a segment bar chart to compare customer counts, an RFM summary table to explain each segment’s average recency, frequency, and monetary value, and a scatter plot of frequency vs. monetary value colored by cluster. These visuals can support marketing actions such as retention, re-engagement, promotion targeting, and campaign timing.
-
+Use a segment bar chart to show the percentage of customers in each group, an RFM summary table to compare average recency, frequency, and monetary value, and a scatter plot of frequency vs. monetary value colored by segment. These segments can support VIP retention, personalized recommendations, promotion targeting, and re-engagement campaigns.
 :::
 
 
