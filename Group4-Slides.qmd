@@ -50,7 +50,7 @@ H&M Customer Segmentation
 | RO | Research Objective | Team Member |
 |------------------------|------------------------|------------------------|
 | RO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
-| RO2 | Can spending behavior and age help explain which customers are more likely to leave the membership program? | Rosarie |
+| AO2 | Can spending behavior and age help explain which customers are more likely to leave the membership program? | Rosarie |
 | RO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
 | RO4 | How can customers be segmented using RFM value? | Frank |
 | RO5 | Do purchase timing patterns differ across customer segments? | Daisy |
@@ -143,7 +143,7 @@ A bar chart comparing average customer spending by subscription status and a box
 
 :::
 
-## RO2: Predicting Membership Status from Spending and Age {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO2: Predicting Membership Status from Spending and Age {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 
@@ -151,13 +151,73 @@ A bar chart comparing average customer spending by subscription status and a box
 
 **Lead:** Rosarie Maramag
 
-**IV's and DV's:** IV: `Total Spending` / `Purchase Frequency` and `Age` (Continuous/Numerical)
+**ML Methods Used:** Classification-Focused Methods — Multinomial Logistic Regression (predicting a 3-category outcome: ACTIVE, PRE-CREATE, LEFT CLUB)
+
+**IV's and DV's:** IV: `Total Spending`, `Purchase Frequency`, and `Age` (Continuous/Numerical)
 
 DV: `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)
 
-**Plan for data wrangling:** Isolate individual customer records and link their transaction history using unique Customer IDs. Handle missing or null values in `Age` (~15,861 missing) and `Membership Status` (~6,062 missing). Convert continuous `Age` into categorical brackets (e.g., 18–25, 26–40, 41–60, 61+) and aggregate total transaction spend and purchase frequency per customer.
+:::
 
-**Plan for data visualization:** A stacked bar chart showing the distribution of Membership Status across different Age Brackets, and a box plot comparing total spending across membership groups to see whether spending patterns help explain which customers are more likely to have left.
+## AO2: Data Wrangling & Visualization {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+**Data wrangling:** Linked customer records to transaction history using Customer IDs. Handled missing values in `Age` (~15,861 missing) and `Membership Status` (~6,062 missing). Since only 467 of 1.37M customers are LEFT CLUB (~0.03%), a simple random sample would have captured almost none of them — so a **stratified sample** was used instead: all available LEFT CLUB customers, plus a random sample of PRE-CREATE and ACTIVE customers, to ensure the rare class was represented. Aggregated total spend and purchase frequency per customer.
+
+**Final sample:** 4,333 ACTIVE · 2,214 PRE-CREATE · 323 LEFT CLUB
+
+**Data visualization:** A stacked bar chart showing the distribution of Membership Status across Age Brackets, and a box plot comparing total spending across membership groups.
+
+:::
+
+## AO2: Model Fitting {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+**Data splitting:** 80/20 train-test split, stratified by membership status to preserve class proportions in both sets.
+
+**Recipe:** Predictors (age, total spend, purchase frequency) were normalized (centered and scaled) before modeling.
+
+**Model specification:** Multinomial logistic regression (`multinom_reg()` via the `nnet` engine), predicting membership status from age, total spend, and purchase frequency.
+
+:::
+
+## AO2: Prediction and Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+The model was evaluated on the held-out 20% test set.
+
+**Accuracy: 65.5%** — the model correctly classified a customer's membership status about two-thirds of the time.
+
+**Kappa: 0.158** — a low-to-moderate score, indicating the model performs only somewhat better than chance once class imbalance is accounted for. This reflects how difficult it genuinely is to predict a rare outcome like leaving the club from just three variables.
+
+:::
+
+## AO2: Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+Coefficients show how each variable shifts the odds of a customer's status relative to ACTIVE members:
+
+- **Purchase frequency** was negatively associated with both PRE-CREATE and LEFT CLUB status — customers who purchase less often are more likely to fall into either non-active group.
+- **Total spending** was positively associated with LEFT CLUB status — surprisingly, higher total spending did not clearly predict staying active.
+- **Age** had the smallest effect of the three predictors on LEFT CLUB status.
+
+This suggests **how often** a customer buys may be a stronger signal of disengagement than **how much** they've spent historically.
+
+:::
+
+## AO2: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+Spending behavior and age can partially explain membership status, but the relationship is more nuanced than expected. Purchase **frequency**, not total spend, was the more consistent signal of disengagement — challenging the common assumption that active members are simply defined by how much they spend.
+
+The model's moderate accuracy (65.5%) and low Kappa (0.158) suggest membership status is difficult to predict from these three variables alone, and that behavioral factors beyond spending and age (e.g., recency of last purchase, channel preference) may better explain why customers leave.
+
+**Business takeaway:** H&M's retention efforts may benefit more from monitoring *purchase frequency trends* per customer than from spending thresholds alone.
 
 :::
 
