@@ -50,7 +50,7 @@ H&M Customer Segmentation
 | RO | Research Objective | Team Member |
 |------------------------|------------------------|------------------------|
 | RO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
-| RO2 | Do customer age groups and membership statuses relate to variations in spending patterns? | Rosarie |
+| RO2 | Can spending behavior and age help explain which customers are more likely to leave the membership program? | Rosarie |
 | RO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
 | RO4 | How can customers be segmented using RFM value? | Frank |
 | RO5 | Do purchase timing patterns differ across customer segments? | Daisy |
@@ -143,18 +143,22 @@ A bar chart comparing average customer spending by subscription status and a box
 
 :::
 
-## RO2: Age, Loyalty, and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## RO2: Predicting Membership Status from Spending and Age {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
-**Research Objective:** Do customer age groups and membership statuses relate to variations in spending patterns?  
+
+**Research Objective:** Can spending behavior and age help explain which customers are more likely to leave the membership program?
+
 **Lead:** Rosarie Maramag
 
-**IV's and DV's:** IV: `Age` (Continuous/Numerical) and `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)  
-DV: `Transaction Amount` / `Purchase Frequency`
+**IV's and DV's:** IV: `Total Spending` / `Purchase Frequency` and `Age` (Continuous/Numerical)
 
-**Plan for data wrangling:** Isolate individual customer records and link their transaction history using unique Customer IDs. Handle missing or null values in `Age` (~15,861 missing) and `Membership Status` (~6,062 missing). Convert continuous `Age` into categorical brackets (e.g., 18–25, 26–40, 41–60, 61+) and aggregate total transaction spend per customer.
+DV: `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)
 
-**Plan for data visualization:** A stacked bar chart showing the distribution of Membership Status across different Age Brackets, and a box plot comparing total transaction spend (DV) across the customer segments to highlight high-value groups.
+**Plan for data wrangling:** Isolate individual customer records and link their transaction history using unique Customer IDs. Handle missing or null values in `Age` (~15,861 missing) and `Membership Status` (~6,062 missing). Convert continuous `Age` into categorical brackets (e.g., 18–25, 26–40, 41–60, 61+) and aggregate total transaction spend and purchase frequency per customer.
+
+**Plan for data visualization:** A stacked bar chart showing the distribution of Membership Status across different Age Brackets, and a box plot comparing total spending across membership groups to see whether spending patterns help explain which customers are more likely to have left.
+
 :::
 
 ## RO3: Sales Channel and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
