@@ -238,6 +238,126 @@ Join transaction-level data with customer and article metadata as needed, confir
 Boxplot or violin plot comparing price distribution across channels, and a bar chart comparing average spend per customer by channel.
 :::
 
+## RO3: Sales Channel and Spending -- ML Method {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Method used:** Regression tree (CART), with bagged tree and random forest as comparison ensembles
+
+**Why regression, not classification:** DV (price / spend) is continuous, not a category
+
+**Why a tree-based method:** Allows non-linear splits and interactions between channel, product group, age, membership status, and news subscription without assuming a linear relationship
+:::
+
+## RO3: Model Fitting {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Data:** ~75,000 row sample of H&M transactions, joined to customer and article metadata
+
+**Split:** 75% train / 25% test, stratified by price
+
+**Recipe:** price ~ sales_channel_id + age + club_member_status + fashion_news_frequency + product_group_name
+
+**Model spec:** Decision tree (rpart engine), compared against bagged tree and random forest (ranger engine), evaluated with 10-fold cross-validation
+:::
+
+```{r}
+#| echo: false
+#| message: false
+
+library(tidymodels)
+library(rpart.plot)
+library(vip)
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+hm_split <- initial_split(hm_sample, prop = 0.75, strata = price)
+hm_train <- training(hm_split)
+hm_test  <- testing(hm_split)
+
+hm_recipe <- recipe(price ~ sales_channel_id + age + club_member_status +
+                       fashion_news_frequency + product_group_name,
+                     data = hm_train)
+
+tree_spec <- decision_tree() |>
+  set_engine("rpart") |>
+  set_mode("regression")
+
+tree_fit <- workflow() |>
+  add_recipe(hm_recipe) |>
+  add_model(tree_spec) |>
+  fit(data = hm_train)
+```
+
+## RO3: Prediction and Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Test set performance:**
+
+RMSE = 0.0179
+R-squared = 0.0884
+
+**What this means:** The model explains only about 9% of the variation in price. Channel, age, product group, and membership status together are weak predictors of spend, most of the variation comes from factors not captured in this data.
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+
+tree_preds <- predict(tree_fit, hm_test) |>
+  bind_cols(hm_test)
+
+tree_preds |>
+  metrics(truth = price, estimate = .pred)
+```
+
+## RO3: Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Single tree:** Splits entirely on product_group_name. Sales channel is never chosen as a splitting variable.
+
+**Random forest variable importance:** product_group_name is by far the strongest predictor. sales_channel_id ranks second, well behind product group. age, fashion_news_frequency, and club_member_status contribute very little.
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+
+rpart.plot(tree_fit$fit$fit$fit)
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+rf_spec <- rand_forest() |>
+  set_engine("ranger", importance = "impurity") |>
+  set_mode("regression")
+
+rf_fit <- workflow() |>
+  add_recipe(hm_recipe) |>
+  add_model(rf_spec) |>
+  fit(data = hm_train)
+
+rf_fit |>
+  extract_fit_parsnip() |>
+  vip::vip()
+```
+
+## RO3: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Does sales channel relate to spending? Not meaningfully.**
+
+The regression tree split entirely on product group, never on sales channel. The random forest ranked sales channel second in importance, but far behind product group.
+
+**What actually drives spend:** What a customer buys (product group) matters far more than where they buy it (online vs. in store).
+
+**Caveat:** Overall model performance is weak (R-squared = 0.0884), so even product group alone does not strongly predict price. Spend is likely driven by factors outside this dataset, such as promotions, loyalty behavior, or individual preference.
+:::
+
 ## RO4: RFM Value Segmentation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
