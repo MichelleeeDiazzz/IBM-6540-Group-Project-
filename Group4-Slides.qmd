@@ -199,44 +199,45 @@ XGBoost achieved the highest ROC AUC, but its advantage over Lasso was only **0.
 :::
 
 
-## AO1: XGBoost Interpretation
+## AO1: Model Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide .dense-slide}
 
-::: {.content-panel .panel-smaller}
+::: {.content-panel .panel-xs}
 
 **Variable Importance**
 
-- Prior total spending was the strongest feature
+- **Prior total spending** was the strongest feature
 - Online purchase share and age also contributed
 - Purchasing behavior was more informative than demographics
 
 **Partial Dependence**
 
-Higher prior spending generally increased the predicted probability of becoming a High Spender.
+- Higher prior spending generally increased High-Spender probability
 
 **SHAP**
 
 - Unknown Fashion News status and prior spending had the largest average effects
-- Unknown status should be interpreted carefully because it represents missing information
+- "Unknown" represents missing information and should be interpreted carefully
 
 :::
 
 
-## AO1: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide .dense-slide}
 
 ::: {.content-panel .panel-xs}
 
-### Key Findings
+**Key Findings**
 
-- **XGBoost** had the highest CV ROC AUC (**0.622**), closely followed by Lasso (**0.620**)
-- **Prior total spending** was the strongest XGBoost feature
-- Higher prior spending generally increased predicted High-Spender probability
-- Purchasing behavior was more informative than Fashion News status overall
+- **XGBoost:** highest CV ROC AUC (**0.622**)
+- **Lasso:** nearly identical performance (**0.620**)
+- **Prior total spending:** strongest XGBoost feature
+- Higher prior spending generally increased High-Spender probability
+- Purchasing behavior was more informative than Fashion News status
 
-### Business Takeaway
+**Business Takeaway**
 
-- Focus on **previous purchasing behavior** to identify potential high spenders
-- Prioritize stronger spenders for personalized promotions and recommendations
-- Use the model as a **decision-support tool** because predictive performance was moderate
+- Focus on **previous purchasing behavior**
+- Prioritize stronger spenders for personalized marketing
+- Use predictions as **decision support**, not perfect classifications
 
 :::
 
