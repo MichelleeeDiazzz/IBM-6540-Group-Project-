@@ -161,7 +161,7 @@ DV: `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)
 
 ## AO2: Data Wrangling & Visualization {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-smaller}
 
 **Data wrangling:** Linked customer records to transaction history using Customer IDs. Handled missing values in `Age` (~15,861 missing) and `Membership Status` (~6,062 missing). Since only 467 of 1.37M customers are LEFT CLUB (~0.03%), a simple random sample would have captured almost none of them — so a **stratified sample** was used instead: all available LEFT CLUB customers, plus a random sample of PRE-CREATE and ACTIVE customers, to ensure the rare class was represented. Aggregated total spend and purchase frequency per customer.
 
@@ -358,23 +358,192 @@ The regression tree split entirely on product group, never on sales channel. The
 **Caveat:** Overall model performance is weak (R-squared = 0.0884), so even product group alone does not strongly predict price. Spend is likely driven by factors outside this dataset, such as promotions, loyalty behavior, or individual preference.
 :::
 
-## RO4: RFM Value Segmentation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO4: Predicting Future RFM Value {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
-**Research Objective:** How can customers be segmented using RFM value?  
+
+**Research Objective:**  
+Can historical customer behavior predict a customer's future RFM value?
+
 **Lead:** Frank Renn
 
-**IV’s and DV’s:**  
-IVs: Recency, Frequency, Monetary value  
-DV: Customer segment / RFM value group
+**Machine Learning Methods**
 
-**Plan for data wrangling:**  
-Aggregate transaction data by customer ID to calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, log transformation, scaling, and time-based train/validation split before running K-means clustering.
+- Classification Tree
+- Bagged Trees
+- Random Forest
+- Boosted Tree
 
-**Plan for data visualization:**  
-Use a segment bar chart to show the percentage of customers in each group, an RFM summary table to compare average recency, frequency, and monetary value, and a scatter plot of frequency vs. monetary value colored by segment. These segments can support VIP retention, personalized recommendations, promotion targeting, and re-engagement campaigns.
+**Outcome:**  
+Inactive · Low Value · Mid Value · High Value
+
+**Business Goal:**  
+Identify customers for retention, growth, and reactivation campaigns.
+
 :::
 
+
+## AO4: Data Wrangling & Visualization {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Data Wrangling
+
+- Aggregated transactions to the **customer level**
+- Created historical **Recency, Frequency, and Monetary** measures
+- Added average price, number of items, online share, active months, and purchase span
+- Joined age, membership status, and fashion-news variables
+- Used future purchasing behavior to create the target RFM class
+
+### Time Periods
+
+**Historical Features:** Jun 2019 – May 2020  
+**Future Outcome:** Jun 2020 onward
+
+### Visualization Finding
+
+Frequency and monetary behavior showed substantial overlap across future RFM groups, indicating that the four customer classes would not be perfectly separable.
+
+:::
+
+
+## AO4: Model Fitting {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Data Splitting
+
+- **80% training / 20% testing**
+- Stratified by future RFM class
+- Up to **1,500 customers per class**
+- Approximately balanced four-class sample
+
+### Recipe Creation
+
+- Median imputation for missing numeric predictors
+- Unknown and new categorical levels handled
+- Zero-variance predictors removed
+- One-hot encoding applied for XGBoost
+
+### Model Specification
+
+| Model | Approach |
+|---|---|
+| Classification Tree | Single interpretable tree |
+| Bagged Trees | Multiple bootstrap trees |
+| Random Forest | Bagging + random predictor selection |
+| Boosted Tree | Sequential error-correcting trees |
+
+**Validation:** 10-fold stratified cross-validation
+
+:::
+
+
+## AO4: Prediction & Model Evaluation {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Classification Tree — Test Set
+
+| Metric | Result |
+|---|---:|
+| Accuracy | **41.1%** |
+| Macro Sensitivity | **41.1%** |
+| Macro Specificity | **80.4%** |
+| Multiclass ROC AUC | **0.673** |
+
+With four balanced classes, random guessing would produce approximately **25% accuracy**.
+
+### Cross-Validated Model Comparison
+
+| Model | Result |
+|---|---|
+| **Boosted Tree** | **42.4% Accuracy / 0.695 AUC** |
+| Classification Tree | 41.7% Accuracy / 0.674 AUC |
+| Random Forest | 0.687 AUC |
+| Bagged Trees | Evaluated on same CV folds |
+
+**Best Model:** **Boosted Tree**
+
+:::
+
+
+## AO4: Interpretation {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Recall by Customer Segment
+
+| Segment | Recall |
+|---|---:|
+| **Inactive** | **62.7%** |
+| **High Value** | **52.0%** |
+| Low Value | 27.7% |
+| Mid Value | 22.0% |
+
+### Interpretation
+
+- **Inactive** customers were easiest to identify
+- **High Value** customers were also predicted relatively well
+- Mid and Low Value customers had more overlapping historical behavior
+- Extreme customer groups were easier to distinguish than middle-value groups
+- Random Forest **permutation importance** was used to identify influential predictors
+- Historical purchasing behavior provided stronger predictive information than profile variables alone
+
+:::
+
+
+## AO4: Tree Complexity & Pruning {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Overfitted Tree
+
+**Cost Complexity: `cp = 0.0001`**
+
+| Metric | Result |
+|---|---:|
+| Training AUC | **1.00** |
+| Testing AUC | ~**0.55** |
+
+The large gap shows severe **overfitting**.
+
+### Best Pruning Level
+
+**Cost Complexity: `cp ≈ 0.001`**
+
+- Testing AUC: ~**0.68**
+- Final tree: **55 leaf nodes**
+
+**Finding:**  
+Moderate pruning improved generalization by reducing unnecessary model complexity.
+
+:::
+
+
+## AO4: Summary Findings {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Key Findings
+
+- Historical customer behavior provided a **moderate signal** of future RFM value
+- Classification Tree achieved **41.1% test accuracy / 0.673 AUC**
+- Boosted Tree performed best with **42.4% CV accuracy / 0.695 AUC**
+- Inactive customers had the highest recall at **62.7%**
+- High Value customers achieved **52.0% recall**
+- Mid Value customers were hardest to identify at **22.0% recall**
+- Moderate pruning reduced overfitting and improved generalization
+
+### Business Takeaway
+
+**High Value** → Loyalty & retention  
+**Mid / Low Value** → Engagement & growth  
+**Inactive** → Reactivation & win-back
+
+Predicted RFM value can help H&M prioritize customer targeting, but the model should be used as a **decision-support tool rather than a perfect classification system**.
+
+:::
 
 ## RO5: Purchase Timing Patterns Across Segments {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 

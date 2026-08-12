@@ -97,7 +97,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Group4-Slides_files/libs/revealjs/dist/theme/quarto-44f9f915f573fbd970275a2f79155f57.css">
+  <link rel="stylesheet" href="Group4-Slides_files/libs/revealjs/dist/theme/quarto-90454075d69b0a13a897001afc486fa0.css">
   <link href="Group4-Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Group4-Slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Group4-Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -352,7 +352,7 @@ A bar chart comparing average customer spending by subscription status and a box
 </section>
 <section id="ao2-data-wrangling-visualization" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO2: Data Wrangling &amp; Visualization</h2>
-<div class="content-panel panel-small">
+<div class="content-panel panel-smaller">
 <p><strong>Data wrangling:</strong> Linked customer records to transaction history using Customer IDs. Handled missing values in <code>Age</code> (~15,861 missing) and <code>Membership Status</code> (~6,062 missing). Since only 467 of 1.37M customers are LEFT CLUB (~0.03%), a simple random sample would have captured almost none of them — so a <strong>stratified sample</strong> was used instead: all available LEFT CLUB customers, plus a random sample of PRE-CREATE and ACTIVE customers, to ensure the rare class was represented. Aggregated total spend and purchase frequency per customer.</p>
 <p><strong>Final sample:</strong> 4,333 ACTIVE · 2,214 PRE-CREATE · 323 LEFT CLUB</p>
 <p><strong>Data visualization:</strong> A stacked bar chart showing the distribution of Membership Status across Age Brackets, and a box plot comparing total spending across membership groups.</p>
@@ -491,18 +491,244 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 <p><strong>Caveat:</strong> Overall model performance is weak (R-squared = 0.0884), so even product group alone does not strongly predict price. Spend is likely driven by factors outside this dataset, such as promotions, loyalty behavior, or individual preference.</p>
 </div>
 </section>
-<section id="ro4-rfm-value-segmentation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
-<h2>RO4: RFM Value Segmentation</h2>
+<section id="ao4-predicting-future-rfm-value" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Predicting Future RFM Value</h2>
 <div class="content-panel panel-small">
-<p><strong>Research Objective:</strong> How can customers be segmented using RFM value?<br>
-<strong>Lead:</strong> Frank Renn</p>
-<p><strong>IV’s and DV’s:</strong><br>
-IVs: Recency, Frequency, Monetary value<br>
-DV: Customer segment / RFM value group</p>
-<p><strong>Plan for data wrangling:</strong><br>
-Aggregate transaction data by customer ID to calculate each customer’s most recent purchase, purchase count, and total spending. Then apply course techniques such as feature engineering, log transformation, scaling, and time-based train/validation split before running K-means clustering.</p>
-<p><strong>Plan for data visualization:</strong><br>
-Use a segment bar chart to show the percentage of customers in each group, an RFM summary table to compare average recency, frequency, and monetary value, and a scatter plot of frequency vs.&nbsp;monetary value colored by segment. These segments can support VIP retention, personalized recommendations, promotion targeting, and re-engagement campaigns.</p>
+<p><strong>Research Objective:</strong><br>
+Can historical customer behavior predict a customer’s future RFM value?</p>
+<p><strong>Lead:</strong> Frank Renn</p>
+<p><strong>Machine Learning Methods</strong></p>
+<ul>
+<li>Classification Tree</li>
+<li>Bagged Trees</li>
+<li>Random Forest</li>
+<li>Boosted Tree</li>
+</ul>
+<p><strong>Outcome:</strong><br>
+Inactive · Low Value · Mid Value · High Value</p>
+<p><strong>Business Goal:</strong><br>
+Identify customers for retention, growth, and reactivation campaigns.</p>
+</div>
+</section>
+<section id="ao4-data-wrangling-visualization" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Data Wrangling &amp; Visualization</h2>
+<div class="content-panel">
+<h3 id="data-wrangling-1">Data Wrangling</h3>
+<ul>
+<li>Aggregated transactions to the <strong>customer level</strong></li>
+<li>Created historical <strong>Recency, Frequency, and Monetary</strong> measures</li>
+<li>Added average price, number of items, online share, active months, and purchase span</li>
+<li>Joined age, membership status, and fashion-news variables</li>
+<li>Used future purchasing behavior to create the target RFM class</li>
+</ul>
+<h3 id="time-periods">Time Periods</h3>
+<p><strong>Historical Features:</strong> Jun 2019 – May 2020<br>
+<strong>Future Outcome:</strong> Jun 2020 onward</p>
+<h3 id="visualization-finding">Visualization Finding</h3>
+<p>Frequency and monetary behavior showed substantial overlap across future RFM groups, indicating that the four customer classes would not be perfectly separable.</p>
+</div>
+</section>
+<section id="ao4-model-fitting" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Model Fitting</h2>
+<div class="content-panel">
+<h3 id="data-splitting">Data Splitting</h3>
+<ul>
+<li><strong>80% training / 20% testing</strong></li>
+<li>Stratified by future RFM class</li>
+<li>Up to <strong>1,500 customers per class</strong></li>
+<li>Approximately balanced four-class sample</li>
+</ul>
+<h3 id="recipe-creation">Recipe Creation</h3>
+<ul>
+<li>Median imputation for missing numeric predictors</li>
+<li>Unknown and new categorical levels handled</li>
+<li>Zero-variance predictors removed</li>
+<li>One-hot encoding applied for XGBoost</li>
+</ul>
+<h3 id="model-specification">Model Specification</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classification Tree</td>
+<td>Single interpretable tree</td>
+</tr>
+<tr class="even">
+<td>Bagged Trees</td>
+<td>Multiple bootstrap trees</td>
+</tr>
+<tr class="odd">
+<td>Random Forest</td>
+<td>Bagging + random predictor selection</td>
+</tr>
+<tr class="even">
+<td>Boosted Tree</td>
+<td>Sequential error-correcting trees</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Validation:</strong> 10-fold stratified cross-validation</p>
+</div>
+</section>
+<section id="ao4-prediction-model-evaluation" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Prediction &amp; Model Evaluation</h2>
+<div class="content-panel">
+<h3 id="classification-tree-test-set">Classification Tree — Test Set</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td style="text-align: right;"><strong>41.1%</strong></td>
+</tr>
+<tr class="even">
+<td>Macro Sensitivity</td>
+<td style="text-align: right;"><strong>41.1%</strong></td>
+</tr>
+<tr class="odd">
+<td>Macro Specificity</td>
+<td style="text-align: right;"><strong>80.4%</strong></td>
+</tr>
+<tr class="even">
+<td>Multiclass ROC AUC</td>
+<td style="text-align: right;"><strong>0.673</strong></td>
+</tr>
+</tbody>
+</table>
+<p>With four balanced classes, random guessing would produce approximately <strong>25% accuracy</strong>.</p>
+<h3 id="cross-validated-model-comparison">Cross-Validated Model Comparison</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Boosted Tree</strong></td>
+<td><strong>42.4% Accuracy / 0.695 AUC</strong></td>
+</tr>
+<tr class="even">
+<td>Classification Tree</td>
+<td>41.7% Accuracy / 0.674 AUC</td>
+</tr>
+<tr class="odd">
+<td>Random Forest</td>
+<td>0.687 AUC</td>
+</tr>
+<tr class="even">
+<td>Bagged Trees</td>
+<td>Evaluated on same CV folds</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Model:</strong> <strong>Boosted Tree</strong></p>
+</div>
+</section>
+<section id="ao4-interpretation" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Interpretation</h2>
+<div class="content-panel">
+<h3 id="recall-by-customer-segment">Recall by Customer Segment</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th style="text-align: right;">Recall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Inactive</strong></td>
+<td style="text-align: right;"><strong>62.7%</strong></td>
+</tr>
+<tr class="even">
+<td><strong>High Value</strong></td>
+<td style="text-align: right;"><strong>52.0%</strong></td>
+</tr>
+<tr class="odd">
+<td>Low Value</td>
+<td style="text-align: right;">27.7%</td>
+</tr>
+<tr class="even">
+<td>Mid Value</td>
+<td style="text-align: right;">22.0%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interpretation">Interpretation</h3>
+<ul>
+<li><strong>Inactive</strong> customers were easiest to identify</li>
+<li><strong>High Value</strong> customers were also predicted relatively well</li>
+<li>Mid and Low Value customers had more overlapping historical behavior</li>
+<li>Extreme customer groups were easier to distinguish than middle-value groups</li>
+<li>Random Forest <strong>permutation importance</strong> was used to identify influential predictors</li>
+<li>Historical purchasing behavior provided stronger predictive information than profile variables alone</li>
+</ul>
+</div>
+</section>
+<section id="ao4-tree-complexity-pruning" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Tree Complexity &amp; Pruning</h2>
+<div class="content-panel">
+<h3 id="overfitted-tree">Overfitted Tree</h3>
+<p><strong>Cost Complexity: <code>cp = 0.0001</code></strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Training AUC</td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+</tr>
+<tr class="even">
+<td>Testing AUC</td>
+<td style="text-align: right;">~<strong>0.55</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The large gap shows severe <strong>overfitting</strong>.</p>
+<h3 id="best-pruning-level">Best Pruning Level</h3>
+<p><strong>Cost Complexity: <code>cp ≈ 0.001</code></strong></p>
+<ul>
+<li>Testing AUC: ~<strong>0.68</strong></li>
+<li>Final tree: <strong>55 leaf nodes</strong></li>
+</ul>
+<p><strong>Finding:</strong><br>
+Moderate pruning improved generalization by reducing unnecessary model complexity.</p>
+</div>
+</section>
+<section id="ao4-summary-findings" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO4: Summary Findings</h2>
+<div class="content-panel">
+<h3 id="key-findings">Key Findings</h3>
+<ul>
+<li>Historical customer behavior provided a <strong>moderate signal</strong> of future RFM value</li>
+<li>Classification Tree achieved <strong>41.1% test accuracy / 0.673 AUC</strong></li>
+<li>Boosted Tree performed best with <strong>42.4% CV accuracy / 0.695 AUC</strong></li>
+<li>Inactive customers had the highest recall at <strong>62.7%</strong></li>
+<li>High Value customers achieved <strong>52.0% recall</strong></li>
+<li>Mid Value customers were hardest to identify at <strong>22.0% recall</strong></li>
+<li>Moderate pruning reduced overfitting and improved generalization</li>
+</ul>
+<h3 id="business-takeaway">Business Takeaway</h3>
+<p><strong>High Value</strong> → Loyalty &amp; retention<br>
+<strong>Mid / Low Value</strong> → Engagement &amp; growth<br>
+<strong>Inactive</strong> → Reactivation &amp; win-back</p>
+<p>Predicted RFM value can help H&amp;M prioritize customer targeting, but the model should be used as a <strong>decision-support tool rather than a perfect classification system</strong>.</p>
 </div>
 </section>
 <section id="ro5-purchase-timing-patterns-across-segments" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
