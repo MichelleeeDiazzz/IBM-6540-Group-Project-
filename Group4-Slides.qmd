@@ -40,7 +40,7 @@ H&M Customer Segmentation
 **Audience:** H&M marketing, CRM, and merchandising teams.
 
 **Problem:** H&M has a large transaction dataset, but raw purchase records do not directly explain which customers are most valuable, how they shop, or when they are most likely to buy.
-
+ 
 **Project focus:** Use customer segmentation to turn transaction history into actionable marketing insights.
 :::
 
@@ -386,8 +386,8 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 #| message: false
 
 library(tidymodels)
-library(rpart.plot)
-library(vip)
+# library(rpart.plot)  # not installed, causes render to fail
+# library(vip)          # not available for this R version
 ```
 
 ```{r}
@@ -683,11 +683,92 @@ Extract date components (day of week, month, season) from transaction timestamps
 A heatmap of purchase frequency by day of week and segment, and a line chart showing purchase volume trends over time (by month/season) across customer segments.
 :::
 
+## AO5: Purchase Timing -- ML Method {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Method used:** Regression tree (rpart), with random forest (ranger) as a comparison ensemble
+
+**Why regression, not classification:** DV (average days between purchases) is continuous, not a category
+
+**Why this approach:**
+
+- Compares a simple, interpretable single tree against an ensemble method
+- Tests whether purchase count and age group can predict timing patterns
+:::
+
+## AO5: Data Wrangling & Visualization {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Data:** A 75,000-row sample of H&M transactions, joined with customer metadata
+
+**Wrangling steps:**
+
+- Calculated the time gap between each customer's consecutive purchases
+- Aggregated to average days between purchases per customer
+- Filtered to customers with more than one purchase
+- Joined with age group segments (Under 25, 25-39, 40-59, 60+)
+
+**Visualization finding:** A heatmap of purchase frequency by day of week and age group shows the 60+ age group purchasing noticeably more often than other segments, fairly consistently across all days of the week.
+:::
+
+![](assets/ro5_heatmap.png)
+
+## AO5: Model Fitting {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Data splitting:** 75% train / 25% test, stratified by average days between purchases
+
+**Recipe:** avg_days_between_purchases ~ age_group + n_purchases
+
+**Model spec:**
+
+- Decision tree (rpart engine)
+- Compared against random forest (ranger engine)
+:::
+
+## AO5: Prediction and Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Random forest test set performance:**
+
+- RMSE = 167
+- R-squared = 0.0135
+- MAE = 136
+
+**What this means:** The model explains only about 1.3% of the variation in average time between purchases, most of the variation comes from factors not captured in this data.
+:::
+
+![](assets/ro5_metrics.png)
+
+## AO5: Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Purchase count (n_purchases):** Overwhelmingly the strongest predictor, roughly 25 to 30 times higher importance than any age group category
+
+**Age group:** Contributed very little across all four brackets, similarly low importance throughout
+
+**Takeaway:** How often a customer has purchased matters far more than their age when predicting time between purchases
+:::
+
+![](assets/ro5_importance.png)
+
+## AO5: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+**Do purchase timing patterns differ across customer segments? Not by age, meaningfully.**
+
+- Random forest explained only 1.3% of the variation in time between purchases
+- Purchase count dominated the model
+- Age group added almost nothing
+
+**Business takeaway:** H&M's timing-based campaigns are better targeted using a customer's purchase history rather than their age bracket. Age alone is not a useful segment for timing predictions.
+:::
+
 ## Appendix {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 
-### Project Resources
+### Project Resources 
 
 **GitHub Repository**  
 [View Group Project Repository](https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-)

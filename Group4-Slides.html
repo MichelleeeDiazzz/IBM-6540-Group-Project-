@@ -226,14 +226,14 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th>RO</th>
-<th>Research Objective</th>
+<th>AO</th>
+<th>Analytics Objective</th>
 <th>Team Member</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>RO1</td>
+<td>AO1</td>
 <td>Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?</td>
 <td>Gigi</td>
 </tr>
@@ -243,17 +243,17 @@
 <td>Rosarie</td>
 </tr>
 <tr class="odd">
-<td>RO3</td>
+<td>AO3</td>
 <td>Does the sales channel (online vs.&nbsp;store) relate to spending patterns?</td>
 <td>Michelle</td>
 </tr>
 <tr class="even">
-<td>RO4</td>
+<td>AO4</td>
 <td>How can customers be segmented using RFM value?</td>
 <td>Frank</td>
 </tr>
 <tr class="odd">
-<td>RO5</td>
+<td>AO5</td>
 <td>Do purchase timing patterns differ across customer segments?</td>
 <td>Daisy</td>
 </tr>
@@ -326,18 +326,130 @@
 </ul>
 </div>
 </section>
-<section id="ro1-fashion-news-subscription-and-spending" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
-<h2>RO1: Fashion News Subscription and Spending</h2>
+<section id="ao1-predicting-high-spending-customers" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO1: Predicting High-Spending Customers</h2>
 <div class="content-panel panel-small">
-<p><strong>Research Objective:</strong> Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?</p>
+<p><strong>Analytics Objective:</strong><br>
+Can customer characteristics and previous purchasing behavior predict whether an H&amp;M customer will become a future high spender?</p>
 <p><strong>Lead:</strong> Gigi Brunel</p>
-<p><strong>IV’s and DV’s:</strong><br>
-IV: Fashion News Subscription Status (None, Regularly, Monthly)<br>
-DV: Total Customer Spending / Purchase Frequency</p>
-<p><strong>Plan for data wrangling:</strong><br>
-Join customer and transaction tables using <code>customer_id</code>. Clean inconsistent Fashion News labels, handle missing subscription values, and aggregate transaction data to calculate each customer’s total spending and purchase frequency.</p>
-<p><strong>Plan for data visualization:</strong><br>
-A bar chart comparing average customer spending by subscription status and a box plot comparing purchase frequency across subscription groups.</p>
+<p><strong>Machine Learning Methods</strong></p>
+<ul>
+<li>Lasso Logistic Regression</li>
+<li>Tuned Decision Tree</li>
+<li>Random Forest</li>
+<li>XGBoost</li>
+</ul>
+<p><strong>Outcome:</strong><br>
+High Spender · Not High Spender</p>
+<p><strong>Business Goal:</strong><br>
+Identify customers who are more likely to become high spenders so H&amp;M can provide more relevant promotions and recommendations.</p>
+</div>
+</section>
+<section id="ao1-data-wrangling-model-setup" class="slide level2">
+<h2>AO1: Data Wrangling &amp; Model Setup</h2>
+<div class="content-panel panel-xs">
+<p><strong>Data Wrangling</strong></p>
+<ul>
+<li>Combined customer data with transaction history</li>
+<li>Used pre-July 2020 transactions as predictors</li>
+<li>Used later transactions to measure future spending</li>
+<li>Created customer-level purchasing features</li>
+<li>Defined High Spenders using median future spending</li>
+<li>Separated feature and outcome periods to prevent leakage</li>
+</ul>
+<p><strong>Predictors</strong></p>
+<ul>
+<li>Fashion News status, age, club membership</li>
+<li>Prior transactions and total spending</li>
+<li>Average price and unique products</li>
+<li>Online purchase share</li>
+<li>Days since most recent purchase</li>
+</ul>
+<p><strong>Model Setup</strong></p>
+<ul>
+<li>80% training / 20% testing</li>
+<li>Stratified by High Spender status</li>
+<li>10-fold cross-validation</li>
+</ul>
+</div>
+</section>
+<section id="ao1-prediction-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO1: Prediction &amp; Model Evaluation</h2>
+<section id="fold-cross-validation" class="content-panel panel-small">
+<h3>10-Fold Cross-Validation</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;">Mean ROC AUC</th>
+<th style="text-align: right;">Standard Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>XGBoost</strong></td>
+<td style="text-align: right;"><strong>0.622</strong></td>
+<td style="text-align: right;">0.0027</td>
+</tr>
+<tr class="even">
+<td>Lasso Logistic Regression</td>
+<td style="text-align: right;">0.620</td>
+<td style="text-align: right;">0.0024</td>
+</tr>
+<tr class="odd">
+<td>Decision Tree</td>
+<td style="text-align: right;">0.613</td>
+<td style="text-align: right;">0.0029</td>
+</tr>
+<tr class="even">
+<td>Random Forest</td>
+<td style="text-align: right;">0.609</td>
+<td style="text-align: right;">0.0022</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Model:</strong> XGBoost</p>
+<p>XGBoost achieved the highest ROC AUC, but its advantage over Lasso was only <strong>0.002</strong>, which was smaller than one standard error.</p>
+<p><strong>Finding:</strong> More model complexity provided only a small improvement over Logistic Regression.</p>
+</section>
+</section>
+<section id="ao1-model-interpretation" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO1: Model Interpretation</h2>
+<div class="content-panel panel-xs">
+<p><strong>Variable Importance</strong></p>
+<ul>
+<li><strong>Prior total spending</strong> was the strongest feature</li>
+<li>Online purchase share and age also contributed</li>
+<li>Purchasing behavior was more informative than demographics</li>
+</ul>
+<p><strong>Partial Dependence</strong></p>
+<ul>
+<li>Higher prior spending generally increased High-Spender probability</li>
+</ul>
+<p><strong>SHAP</strong></p>
+<ul>
+<li>Unknown Fashion News status and prior spending had the largest average effects</li>
+<li>“Unknown” represents missing information and should be interpreted carefully</li>
+</ul>
+</div>
+</section>
+<section id="ao1-summary-findings" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO1: Summary Findings</h2>
+<div class="content-panel panel-xs">
+<p><strong>Key Findings</strong></p>
+<ul>
+<li><strong>XGBoost:</strong> highest CV ROC AUC (<strong>0.622</strong>)</li>
+<li><strong>Lasso:</strong> nearly identical performance (<strong>0.620</strong>)</li>
+<li><strong>Prior total spending:</strong> strongest XGBoost feature</li>
+<li>Higher prior spending generally increased High-Spender probability</li>
+<li>Purchasing behavior was more informative than Fashion News status</li>
+</ul>
+<p><strong>Business Takeaway</strong></p>
+<ul>
+<li>Focus on <strong>previous purchasing behavior</strong></li>
+<li>Prioritize stronger spenders for personalized marketing</li>
+<li>Use predictions as <strong>decision support</strong>, not perfect classifications</li>
+</ul>
 </div>
 </section>
 <section id="ao2-predicting-membership-status-from-spending-and-age" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
@@ -364,6 +476,24 @@ A bar chart comparing average customer spending by subscription status and a box
 <p><strong>Data splitting:</strong> 80/20 train-test split, stratified by membership status to preserve class proportions in both sets.</p>
 <p><strong>Recipe:</strong> Predictors (age, total spend, purchase frequency) were normalized (centered and scaled) before modeling.</p>
 <p><strong>Model specification:</strong> Multinomial logistic regression (<code>multinom_reg()</code> via the <code>nnet</code> engine), predicting membership status from age, total spend, and purchase frequency.</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>model_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(membership_status <span class="sc">~</span> age <span class="sc">+</span> total_spend <span class="sc">+</span> purchase_freq,</span>
+<span id="cb1-2"><a href=""></a>                        <span class="at">data =</span> customer_data) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href=""></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a>model_spec <span class="ot">&lt;-</span> <span class="fu">multinom_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href=""></a>  <span class="fu">set_engine</span>(<span class="st">"nnet"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-7"><a href=""></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb1-8"><a href=""></a></span>
+<span id="cb1-9"><a href=""></a>data_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(customer_data, <span class="at">prop =</span> <span class="fl">0.8</span>, <span class="at">strata =</span> membership_status)</span>
+<span id="cb1-10"><a href=""></a>train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(data_split)</span>
+<span id="cb1-11"><a href=""></a>test_data  <span class="ot">&lt;-</span> <span class="fu">testing</span>(data_split)</span>
+<span id="cb1-12"><a href=""></a></span>
+<span id="cb1-13"><a href=""></a>final_model <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-14"><a href=""></a>  <span class="fu">add_recipe</span>(model_recipe) <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href=""></a>  <span class="fu">add_model</span>(model_spec) <span class="sc">%&gt;%</span></span>
+<span id="cb1-16"><a href=""></a>  <span class="fu">fit</span>(<span class="at">data =</span> train_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ao2-prediction-and-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
@@ -425,22 +555,22 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 <p><strong>Model spec:</strong> Decision tree (rpart engine), compared against bagged tree and random forest (ranger engine), evaluated with 10-fold cross-validation</p>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>hm_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(hm_sample, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> price)</span>
-<span id="cb1-2"><a href=""></a>hm_train <span class="ot">&lt;-</span> <span class="fu">training</span>(hm_split)</span>
-<span id="cb1-3"><a href=""></a>hm_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(hm_split)</span>
-<span id="cb1-4"><a href=""></a></span>
-<span id="cb1-5"><a href=""></a>hm_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(price <span class="sc">~</span> sales_channel_id <span class="sc">+</span> age <span class="sc">+</span> club_member_status <span class="sc">+</span></span>
-<span id="cb1-6"><a href=""></a>                       fashion_news_frequency <span class="sc">+</span> product_group_name,</span>
-<span id="cb1-7"><a href=""></a>                     <span class="at">data =</span> hm_train)</span>
-<span id="cb1-8"><a href=""></a></span>
-<span id="cb1-9"><a href=""></a>tree_spec <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href=""></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a href=""></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
-<span id="cb1-12"><a href=""></a></span>
-<span id="cb1-13"><a href=""></a>tree_fit <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href=""></a>  <span class="fu">add_recipe</span>(hm_recipe) <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href=""></a>  <span class="fu">add_model</span>(tree_spec) <span class="sc">|&gt;</span></span>
-<span id="cb1-16"><a href=""></a>  <span class="fu">fit</span>(<span class="at">data =</span> hm_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>hm_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(hm_sample, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> price)</span>
+<span id="cb2-2"><a href=""></a>hm_train <span class="ot">&lt;-</span> <span class="fu">training</span>(hm_split)</span>
+<span id="cb2-3"><a href=""></a>hm_test  <span class="ot">&lt;-</span> <span class="fu">testing</span>(hm_split)</span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a>hm_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(price <span class="sc">~</span> sales_channel_id <span class="sc">+</span> age <span class="sc">+</span> club_member_status <span class="sc">+</span></span>
+<span id="cb2-6"><a href=""></a>                       fashion_news_frequency <span class="sc">+</span> product_group_name,</span>
+<span id="cb2-7"><a href=""></a>                     <span class="at">data =</span> hm_train)</span>
+<span id="cb2-8"><a href=""></a></span>
+<span id="cb2-9"><a href=""></a>tree_spec <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href=""></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href=""></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a>tree_fit <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href=""></a>  <span class="fu">add_recipe</span>(hm_recipe) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href=""></a>  <span class="fu">add_model</span>(tree_spec) <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href=""></a>  <span class="fu">fit</span>(<span class="at">data =</span> hm_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ro3-prediction-and-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
@@ -451,11 +581,11 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 <p><strong>What this means:</strong> The model explains only about 9% of the variation in price. Channel, age, product group, and membership status together are weak predictors of spend, most of the variation comes from factors not captured in this data.</p>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>tree_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree_fit, hm_test) <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">bind_cols</span>(hm_test)</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a>tree_preds <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> price, <span class="at">estimate =</span> .pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>tree_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree_fit, hm_test) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href=""></a>  <span class="fu">bind_cols</span>(hm_test)</span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a>tree_preds <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href=""></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> price, <span class="at">estimate =</span> .pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ro3-interpretation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
@@ -465,21 +595,21 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 <p><strong>Random forest variable importance:</strong> product_group_name is by far the strongest predictor. sales_channel_id ranks second, well behind product group. age, fashion_news_frequency, and club_member_status contribute very little.</p>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">rpart.plot</span>(tree_fit<span class="sc">$</span>fit<span class="sc">$</span>fit<span class="sc">$</span>fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">rpart.plot</span>(tree_fit<span class="sc">$</span>fit<span class="sc">$</span>fit<span class="sc">$</span>fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
-<span id="cb4-4"><a href=""></a></span>
-<span id="cb4-5"><a href=""></a>rf_fit <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">add_recipe</span>(hm_recipe) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href=""></a>  <span class="fu">add_model</span>(rf_spec) <span class="sc">|&gt;</span></span>
-<span id="cb4-8"><a href=""></a>  <span class="fu">fit</span>(<span class="at">data =</span> hm_train)</span>
-<span id="cb4-9"><a href=""></a></span>
-<span id="cb4-10"><a href=""></a>rf_fit <span class="sc">|&gt;</span></span>
-<span id="cb4-11"><a href=""></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a href=""></a>  vip<span class="sc">::</span><span class="fu">vip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>rf_spec <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>rf_fit <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href=""></a>  <span class="fu">add_recipe</span>(hm_recipe) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">add_model</span>(rf_spec) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href=""></a>  <span class="fu">fit</span>(<span class="at">data =</span> hm_train)</span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a>rf_fit <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href=""></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href=""></a>  vip<span class="sc">::</span><span class="fu">vip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ro3-summary-findings" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
@@ -745,15 +875,93 @@ Extract date components (day of week, month, season) from transaction timestamps
 A heatmap of purchase frequency by day of week and segment, and a line chart showing purchase volume trends over time (by month/season) across customer segments.</p>
 </div>
 </section>
-<section id="conclusion" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
-<h2>Conclusion</h2>
-<div class="content-panel">
+<section id="ao5-purchase-timing-ml-method" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Purchase Timing – ML Method</h2>
+<div class="content-panel panel-small">
+<p><strong>Method used:</strong> Regression tree (rpart), with random forest (ranger) as a comparison ensemble</p>
+<p><strong>Why regression, not classification:</strong> DV (average days between purchases) is continuous, not a category</p>
+<p><strong>Why this approach:</strong></p>
 <ul>
-<li>This project applies customer segmentation techniques to H&amp;M transaction data.</li>
-<li>Each research objective examines a different aspect of customer behavior.</li>
-<li>Findings will help identify meaningful customer segments for targeted marketing.</li>
-<li>The next phase will focus on data cleaning, visualization, and statistical analysis to answer each research objective.</li>
+<li>Compares a simple, interpretable single tree against an ensemble method</li>
+<li>Tests whether purchase count and age group can predict timing patterns</li>
 </ul>
+</div>
+</section>
+<section id="ao5-data-wrangling-visualization" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Data Wrangling &amp; Visualization</h2>
+<div class="content-panel panel-small">
+<p><strong>Data:</strong> A 75,000-row sample of H&amp;M transactions, joined with customer metadata</p>
+<p><strong>Wrangling steps:</strong></p>
+<ul>
+<li>Calculated the time gap between each customer’s consecutive purchases</li>
+<li>Aggregated to average days between purchases per customer</li>
+<li>Filtered to customers with more than one purchase</li>
+<li>Joined with age group segments (Under 25, 25-39, 40-59, 60+)</li>
+</ul>
+<p><strong>Visualization finding:</strong> A heatmap of purchase frequency by day of week and age group shows the 60+ age group purchasing noticeably more often than other segments, fairly consistently across all days of the week.</p>
+</div>
+
+<img data-src="assets/ro5_heatmap.png" class="r-stretch"></section>
+<section id="ao5-model-fitting" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Model Fitting</h2>
+<div class="content-panel panel-small">
+<p><strong>Data splitting:</strong> 75% train / 25% test, stratified by average days between purchases</p>
+<p><strong>Recipe:</strong> avg_days_between_purchases ~ age_group + n_purchases</p>
+<p><strong>Model spec:</strong></p>
+<ul>
+<li>Decision tree (rpart engine)</li>
+<li>Compared against random forest (ranger engine)</li>
+</ul>
+</div>
+</section>
+<section id="ao5-prediction-and-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Prediction and Model Evaluation</h2>
+<div class="content-panel panel-small">
+<p><strong>Random forest test set performance:</strong></p>
+<ul>
+<li>RMSE = 167</li>
+<li>R-squared = 0.0135</li>
+<li>MAE = 136</li>
+</ul>
+<p><strong>What this means:</strong> The model explains only about 1.3% of the variation in average time between purchases, most of the variation comes from factors not captured in this data.</p>
+</div>
+
+<img data-src="assets/ro5_metrics.png" class="r-stretch"></section>
+<section id="ao5-interpretation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Interpretation</h2>
+<div class="content-panel panel-small">
+<p><strong>Purchase count (n_purchases):</strong> Overwhelmingly the strongest predictor, roughly 25 to 30 times higher importance than any age group category</p>
+<p><strong>Age group:</strong> Contributed very little across all four brackets, similarly low importance throughout</p>
+<p><strong>Takeaway:</strong> How often a customer has purchased matters far more than their age when predicting time between purchases</p>
+</div>
+
+<img data-src="assets/ro5_importance.png" class="r-stretch"></section>
+<section id="ao5-summary-findings" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>AO5: Summary Findings</h2>
+<div class="content-panel panel-small">
+<p><strong>Do purchase timing patterns differ across customer segments? Not by age, meaningfully.</strong></p>
+<ul>
+<li>Random forest explained only 1.3% of the variation in time between purchases</li>
+<li>Purchase count dominated the model</li>
+<li>Age group added almost nothing</li>
+</ul>
+<p><strong>Business takeaway:</strong> H&amp;M’s timing-based campaigns are better targeted using a customer’s purchase history rather than their age bracket. Age alone is not a useful segment for timing predictions.</p>
+</div>
+</section>
+<section id="appendix" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<h2>Appendix</h2>
+<div class="content-panel panel-small">
+<h3 id="project-resources">Project Resources</h3>
+<p><strong>GitHub Repository</strong><br>
+<a href="https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-">View Group Project Repository</a></p>
+<p><strong>Presentation Slides</strong></p>
+<h3 id="deployed-machine-learning-model">Deployed Machine Learning Model</h3>
+<p><strong>H&amp;M High-Spender Predictor — Gigi Brunel</strong></p>
+<p><a href="https://qnca96-gigi-brunel.shinyapps.io/hm-high-spender-predictor/">Open Interactive XGBoost Prediction Dashboard</a></p>
+<p><strong>Purpose:</strong> Enter different customer characteristics to estimate the probability that an H&amp;M customer will become a future high spender.</p>
+<p><strong>Membership Status Predictor — Rosarie Maramag</strong></p>
+<p><a href="https://rmaramag.shinyapps.io/membership-shiny-app/">Open Interactive Membership Status Prediction Dashboard</a></p>
+<p><strong>Purpose:</strong> Enter a customer’s age, total spending, and purchase frequency to see the predicted membership status (Active, Pre-Create, or Left Club) and the model’s confidence in each outcome.</p>
 </div>
 
 </section>
