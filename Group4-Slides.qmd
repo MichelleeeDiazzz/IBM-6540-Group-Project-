@@ -47,13 +47,15 @@ H&M Customer Segmentation
 ## Research Objectives {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
 
 ::: {.content-panel .wide-panel}
+
 | AO | Analytics Objective | Team Member |
-|------------------------|------------------------|------------------------|
-| AO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
-| AO2 | Can spending behavior and age help explain which customers are more likely to leave the membership program? | Rosarie |
+|---|---|---|
+| AO1 | Can customer characteristics and previous purchasing behavior predict whether a customer will become a future high spender? | Gigi |
+| AO2 | Can spending behavior and age predict customer membership status? | Rosarie |
 | AO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
-| AO4 | How can customers be segmented using RFM value? | Frank |
-| AO5 | Do purchase timing patterns differ across customer segments? | Daisy |
+| AO4 | Can historical customer behavior predict a customer's future RFM value? | Frank |
+| AO5 | Can customer age group and purchase history predict the time between purchases? | Daisy |
+
 :::
 
 ## Importance of the Topic {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
