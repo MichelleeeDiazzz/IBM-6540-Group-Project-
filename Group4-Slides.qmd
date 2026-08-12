@@ -47,13 +47,13 @@ H&M Customer Segmentation
 ## Research Objectives {background-image="assets/problem-definition.png" background-size="cover" background-opacity="0.18" .problem-slide}
 
 ::: {.content-panel .wide-panel}
-| RO | Research Objective | Team Member |
+| AO | Analytics Objective | Team Member |
 |------------------------|------------------------|------------------------|
-| RO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
+| AO1 | Do customers with different Fashion News subscription statuses exhibit different purchasing behavior? | Gigi |
 | AO2 | Can spending behavior and age help explain which customers are more likely to leave the membership program? | Rosarie |
-| RO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
-| RO4 | How can customers be segmented using RFM value? | Frank |
-| RO5 | Do purchase timing patterns differ across customer segments? | Daisy |
+| AO3 | Does the sales channel (online vs. store) relate to spending patterns? | Michelle |
+| AO4 | How can customers be segmented using RFM value? | Frank |
+| AO5 | Do purchase timing patterns differ across customer segments? | Daisy |
 :::
 
 ## Importance of the Topic {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
@@ -123,7 +123,7 @@ The population represented in this dataset is H&M's online and in-store customer
 - Aggregate transaction-level data to the customer level where needed for segmentation analysis
 :::
 
-## AO1: Predicting Future High-Spending Customers {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: Predicting High-Spending Customers {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 
@@ -147,25 +147,24 @@ Identify customers who are more likely to become high spenders so H&M can provid
 
 :::
 
-## AO1: Data Wrangling & Model Setup {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: Data Wrangling & Model Setup
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-xs}
 
 **Data Wrangling**
 
-- Combined H&M customer information with transaction history
-- Used transactions before July 1, 2020 to create predictors
+- Combined customer data with transaction history
+- Used pre-July 2020 transactions as predictors
 - Used later transactions to measure future spending
 - Created customer-level purchasing features
-- Defined High Spenders as customers above the median future spending level
-- Separated feature and outcome periods to avoid data leakage
+- Defined High Spenders using median future spending
+- Separated feature and outcome periods to prevent leakage
 
 **Predictors**
 
-- Fashion News subscription status
-- Age and club membership
+- Fashion News status, age, club membership
 - Prior transactions and total spending
-- Average purchase price and unique products
+- Average price and unique products
 - Online purchase share
 - Days since most recent purchase
 
@@ -173,7 +172,8 @@ Identify customers who are more likely to become high spenders so H&M can provid
 
 - 80% training / 20% testing
 - Stratified by High Spender status
-- 10-fold cross-validation for final model comparison
+- 10-fold cross-validation
+
 
 :::
 
@@ -199,26 +199,26 @@ XGBoost achieved the highest ROC AUC, but its advantage over Lasso was only **0.
 :::
 
 
-## AO1: XGBoost Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: XGBoost Interpretation
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-smaller}
 
-### Variable Importance
+**Variable Importance**
 
-- **Prior total spending** was by far the strongest feature
+- Prior total spending was the strongest feature
 - Online purchase share and age also contributed
-- Previous purchasing behavior provided more predictive information than demographic characteristics alone
+- Purchasing behavior was more informative than demographics
 
-### Partial Dependence
+**Partial Dependence**
 
-The predicted probability of becoming a High Spender generally **increased as prior total spending increased**.
+Higher prior spending generally increased the predicted probability of becoming a High Spender.
 
-### SHAP Analysis
+**SHAP**
 
-- Unknown Fashion News subscription status and prior total spending had the largest average effects on individual predictions
-- Unknown subscription status should be interpreted carefully because it represents missing or unclear customer information
+- Unknown Fashion News status and prior spending had the largest average effects
+- Unknown status should be interpreted carefully because it represents missing information
 
-**Overall:** A customer's previous purchasing behavior was the strongest indicator of future high-spender status.
+**Overall:** Previous purchasing behavior was the strongest indicator of future high-spender status.
 
 :::
 
@@ -235,13 +235,13 @@ The predicted probability of becoming a High Spender generally **increased as pr
 - Higher previous spending generally increased the predicted probability of becoming a future High Spender
 - Fashion News subscription status was less informative than purchasing behavior overall
 
-### Business Takeaway
+**Business Takeaway**
 
-H&M should focus primarily on **previous purchasing behavior** when identifying customers who may become future high spenders.
+Focus on previous purchasing behavior when identifying potential high spenders.
 
-Customers showing stronger previous spending activity could receive more personalized promotions and product recommendations.
+Customers with stronger prior spending may benefit from personalized promotions and recommendations.
 
-The model should be used as a **decision-support tool**, since overall predictive performance was moderate.
+Use the model as a **decision-support tool**, since predictive performance was moderate.
 
 :::
 
