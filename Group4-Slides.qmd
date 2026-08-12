@@ -218,30 +218,25 @@ Higher prior spending generally increased the predicted probability of becoming 
 - Unknown Fashion News status and prior spending had the largest average effects
 - Unknown status should be interpreted carefully because it represents missing information
 
-**Overall:** Previous purchasing behavior was the strongest indicator of future high-spender status.
-
 :::
 
 
 ## AO1: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-xs}
 
 ### Key Findings
 
-- XGBoost achieved the highest CV ROC AUC at **0.622**
-- Lasso Logistic Regression performed almost as well at **0.620**
-- Prior total spending was the strongest feature in the XGBoost model
-- Higher previous spending generally increased the predicted probability of becoming a future High Spender
-- Fashion News subscription status was less informative than purchasing behavior overall
+- **XGBoost** had the highest CV ROC AUC (**0.622**), closely followed by Lasso (**0.620**)
+- **Prior total spending** was the strongest XGBoost feature
+- Higher prior spending generally increased predicted High-Spender probability
+- Purchasing behavior was more informative than Fashion News status overall
 
-**Business Takeaway**
+### Business Takeaway
 
-Focus on previous purchasing behavior when identifying potential high spenders.
-
-Customers with stronger prior spending may benefit from personalized promotions and recommendations.
-
-Use the model as a **decision-support tool**, since predictive performance was moderate.
+- Focus on **previous purchasing behavior** to identify potential high spenders
+- Prioritize stronger spenders for personalized promotions and recommendations
+- Use the model as a **decision-support tool** because predictive performance was moderate
 
 :::
 
