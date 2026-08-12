@@ -123,25 +123,129 @@ The population represented in this dataset is H&M's online and in-store customer
 - Aggregate transaction-level data to the customer level where needed for segmentation analysis
 :::
 
-## RO1: Fashion News Subscription and Spending {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: Predicting Future High-Spending Customers {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 
-**Research Objective:** Do customers with different Fashion News subscription statuses exhibit different purchasing behavior?
+**Analytics Objective:**  
+Can customer characteristics and previous purchasing behavior predict whether an H&M customer will become a future high spender?
 
 **Lead:** Gigi Brunel
 
-**IV's and DV's:**  
-IV: Fashion News Subscription Status (None, Regularly, Monthly)  
-DV: Total Customer Spending / Purchase Frequency
+**Machine Learning Methods**
 
-**Plan for data wrangling:**  
-Join customer and transaction tables using `customer_id`. Clean inconsistent Fashion News labels, handle missing subscription values, and aggregate transaction data to calculate each customer's total spending and purchase frequency.
+- Lasso Logistic Regression
+- Tuned Decision Tree
+- Random Forest
+- XGBoost
 
-**Plan for data visualization:**  
-A bar chart comparing average customer spending by subscription status and a box plot comparing purchase frequency across subscription groups.
+**Outcome:**  
+High Spender · Not High Spender
+
+**Business Goal:**  
+Identify customers who are more likely to become high spenders so H&M can provide more relevant promotions and recommendations.
 
 :::
+
+## AO1: Data Wrangling & Model Setup {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+**Data Wrangling**
+
+- Combined H&M customer information with transaction history
+- Used transactions before July 1, 2020 to create predictors
+- Used later transactions to measure future spending
+- Created customer-level purchasing features
+- Defined High Spenders as customers above the median future spending level
+- Separated feature and outcome periods to avoid data leakage
+
+**Predictors**
+
+- Fashion News subscription status
+- Age and club membership
+- Prior transactions and total spending
+- Average purchase price and unique products
+- Online purchase share
+- Days since most recent purchase
+
+**Model Setup**
+
+- 80% training / 20% testing
+- Stratified by High Spender status
+- 10-fold cross-validation for final model comparison
+
+:::
+
+## AO1: Prediction & Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+### 10-Fold Cross-Validation
+
+| Model | Mean ROC AUC | Standard Error |
+|---|---:|---:|
+| **XGBoost** | **0.622** | 0.0027 |
+| Lasso Logistic Regression | 0.620 | 0.0024 |
+| Decision Tree | 0.613 | 0.0029 |
+| Random Forest | 0.609 | 0.0022 |
+
+**Best Model:** XGBoost
+
+XGBoost achieved the highest ROC AUC, but its advantage over Lasso was only **0.002**, which was smaller than one standard error.
+
+**Finding:** More model complexity provided only a small improvement over Logistic Regression.
+
+:::
+
+
+## AO1: XGBoost Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+### Variable Importance
+
+- **Prior total spending** was by far the strongest feature
+- Online purchase share and age also contributed
+- Previous purchasing behavior provided more predictive information than demographic characteristics alone
+
+### Partial Dependence
+
+The predicted probability of becoming a High Spender generally **increased as prior total spending increased**.
+
+### SHAP Analysis
+
+- Unknown Fashion News subscription status and prior total spending had the largest average effects on individual predictions
+- Unknown subscription status should be interpreted carefully because it represents missing or unclear customer information
+
+**Overall:** A customer's previous purchasing behavior was the strongest indicator of future high-spender status.
+
+:::
+
+
+## AO1: Summary Findings {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
+::: {.content-panel .panel-small}
+
+### Key Findings
+
+- XGBoost achieved the highest CV ROC AUC at **0.622**
+- Lasso Logistic Regression performed almost as well at **0.620**
+- Prior total spending was the strongest feature in the XGBoost model
+- Higher previous spending generally increased the predicted probability of becoming a future High Spender
+- Fashion News subscription status was less informative than purchasing behavior overall
+
+### Business Takeaway
+
+H&M should focus primarily on **previous purchasing behavior** when identifying customers who may become future high spenders.
+
+Customers showing stronger previous spending activity could receive more personalized promotions and product recommendations.
+
+The model should be used as a **decision-support tool**, since overall predictive performance was moderate.
+
+:::
+
+
 
 ## AO2: Predicting Membership Status from Spending and Age {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
@@ -562,14 +666,26 @@ Extract date components (day of week, month, season) from transaction timestamps
 A heatmap of purchase frequency by day of week and segment, and a line chart showing purchase volume trends over time (by month/season) across customer segments.
 :::
 
+## Appendix {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-## Conclusion {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+::: {.content-panel .panel-small}
 
-::: {.content-panel}
+### Project Resources
 
-- This project applies customer segmentation techniques to H&M transaction data.
-- Each research objective examines a different aspect of customer behavior.
-- Findings will help identify meaningful customer segments for targeted marketing.
-- The next phase will focus on data cleaning, visualization, and statistical analysis to answer each research objective.
+**GitHub Repository**  
+[View Group Project Repository](https://github.com/MichelleeeDiazzz/IBM-6540-Group-Project-)
+
+**Presentation Slides**  
+
+
+### Deployed Machine Learning Model
+
+**H&M High-Spender Predictor — Gigi Brunel**
+
+[Open Interactive XGBoost Prediction Dashboard](https://qnca96-gigi-brunel.shinyapps.io/hm-high-spender-predictor/)
+
+**Purpose:** Enter different customer characteristics to estimate the probability that an H&M customer will become a future high spender.
 
 :::
+
+
