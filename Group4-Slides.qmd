@@ -125,7 +125,7 @@ The population represented in this dataset is H&M's online and in-store customer
 
 ## AO1: Predicting High-Spending Customers {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-xs}
 
 **Analytics Objective:**  
 Can customer characteristics and previous purchasing behavior predict whether an H&M customer will become a future high spender?
@@ -147,7 +147,8 @@ Identify customers who are more likely to become high spenders so H&M can provid
 
 :::
 
-## AO1: Data Wrangling & Model Setup
+## AO1: Data Wrangling & Model Setup {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+
 
 ::: {.content-panel .panel-xs}
 
@@ -177,11 +178,11 @@ Identify customers who are more likely to become high spenders so H&M can provid
 
 :::
 
-## AO1: Prediction & Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO1: Prediction & Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
 
-::: {.content-panel .panel-small}
+::: {.content-panel .panel-xs}
 
-### 10-Fold Cross-Validation
+**10-Fold Cross-Validation**
 
 | Model | Mean ROC AUC | Standard Error |
 |---|---:|---:|
@@ -271,7 +272,7 @@ DV: `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)
 
 :::
 
-## AO2: Model Fitting {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO2: Model Fitting {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 
@@ -369,7 +370,7 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 **Why a tree-based method:** Allows non-linear splits and interactions between channel, product group, age, membership status, and news subscription without assuming a linear relationship
 :::
 
-## RO3: Model Fitting {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## RO3: Model Fitting {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 **Data:** ~75,000 row sample of H&M transactions, joined to customer and article metadata
@@ -696,7 +697,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 - Tests whether purchase count and age group can predict timing patterns
 :::
 
-## AO5: Data Wrangling & Visualization {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO5: Data Wrangling & Visualization {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 **Data:** A 75,000-row sample of H&M transactions, joined with customer metadata
@@ -726,7 +727,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 - Compared against random forest (ranger engine)
 :::
 
-## AO5: Prediction and Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO5: Prediction and Model Evaluation {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 **Random forest test set performance:**
@@ -740,7 +741,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 
 ![](assets/ro5_metrics.png)
 
-## AO5: Interpretation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
+## AO5: Interpretation {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
 **Purchase count (n_purchases):** Overwhelmingly the strongest predictor, roughly 25 to 30 times higher importance than any age group category
@@ -788,10 +789,11 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 
 [Open Interactive Membership Status Prediction Dashboard](https://rmaramag.shinyapps.io/membership-shiny-app/)
 
-**Purpose:** Enter a customer's age, total spending, and purchase frequency to see the predicted membership status (Active, Pre-Create, or Left Club) and the model's confidence in each outcome.
+**Purpose:** Enter a customer's age, total spending, and purchase frequency to see the predicted membership status (Active, Pre-Create, or Left Club) and the model's confidence in each outcome.  
+  
 
-**H&M RFM Customer Value Predictor — Frank Renn**
-[Open Future Customer Value Predictor](https://f6hfd0-frank-renn.shinyapps.io/hm-rfm-predictor/)
+**H&M RFM Customer Value Predictor — Frank Renn**  
+[Open Future Customer Value Predictor](https://f6hfd0-frank-renn.shinyapps.io/hm-rfm-predictor/)  
 **Purpose:** Enter a customer's recency, frequency, monetary, to predict the value of customers.
 
 :::

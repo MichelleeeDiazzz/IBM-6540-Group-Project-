@@ -328,7 +328,7 @@
 </section>
 <section id="ao1-predicting-high-spending-customers" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO1: Predicting High-Spending Customers</h2>
-<div class="content-panel panel-small">
+<div class="content-panel panel-xs">
 <p><strong>Analytics Objective:</strong><br>
 Can customer characteristics and previous purchasing behavior predict whether an H&amp;M customer will become a future high spender?</p>
 <p><strong>Lead:</strong> Gigi Brunel</p>
@@ -345,7 +345,7 @@ High Spender · Not High Spender</p>
 Identify customers who are more likely to become high spenders so H&amp;M can provide more relevant promotions and recommendations.</p>
 </div>
 </section>
-<section id="ao1-data-wrangling-model-setup" class="slide level2">
+<section id="ao1-data-wrangling-model-setup" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO1: Data Wrangling &amp; Model Setup</h2>
 <div class="content-panel panel-xs">
 <p><strong>Data Wrangling</strong></p>
@@ -373,10 +373,10 @@ Identify customers who are more likely to become high spenders so H&amp;M can pr
 </ul>
 </div>
 </section>
-<section id="ao1-prediction-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ao1-prediction-model-evaluation" class="slide level2" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO1: Prediction &amp; Model Evaluation</h2>
-<section id="fold-cross-validation" class="content-panel panel-small">
-<h3>10-Fold Cross-Validation</h3>
+<div class="content-panel panel-xs">
+<p><strong>10-Fold Cross-Validation</strong></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -411,7 +411,7 @@ Identify customers who are more likely to become high spenders so H&amp;M can pr
 <p><strong>Best Model:</strong> XGBoost</p>
 <p>XGBoost achieved the highest ROC AUC, but its advantage over Lasso was only <strong>0.002</strong>, which was smaller than one standard error.</p>
 <p><strong>Finding:</strong> More model complexity provided only a small improvement over Logistic Regression.</p>
-</section>
+</div>
 </section>
 <section id="ao1-model-interpretation" class="slide level2 importance-slide dense-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO1: Model Interpretation</h2>
@@ -470,7 +470,7 @@ Identify customers who are more likely to become high spenders so H&amp;M can pr
 <p><strong>Data visualization:</strong> A stacked bar chart showing the distribution of Membership Status across Age Brackets, and a box plot comparing total spending across membership groups.</p>
 </div>
 </section>
-<section id="ao2-model-fitting" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ao2-model-fitting" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO2: Model Fitting</h2>
 <div class="content-panel panel-small">
 <p><strong>Data splitting:</strong> 80/20 train-test split, stratified by membership status to preserve class proportions in both sets.</p>
@@ -546,7 +546,7 @@ Boxplot or violin plot comparing price distribution across channels, and a bar c
 <p><strong>Why a tree-based method:</strong> Allows non-linear splits and interactions between channel, product group, age, membership status, and news subscription without assuming a linear relationship</p>
 </div>
 </section>
-<section id="ro3-model-fitting" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ro3-model-fitting" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>RO3: Model Fitting</h2>
 <div class="content-panel panel-small">
 <p><strong>Data:</strong> ~75,000 row sample of H&amp;M transactions, joined to customer and article metadata</p>
@@ -887,7 +887,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 </ul>
 </div>
 </section>
-<section id="ao5-data-wrangling-visualization" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ao5-data-wrangling-visualization" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO5: Data Wrangling &amp; Visualization</h2>
 <div class="content-panel panel-small">
 <p><strong>Data:</strong> A 75,000-row sample of H&amp;M transactions, joined with customer metadata</p>
@@ -914,7 +914,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 </ul>
 </div>
 </section>
-<section id="ao5-prediction-and-model-evaluation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ao5-prediction-and-model-evaluation" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO5: Prediction and Model Evaluation</h2>
 <div class="content-panel panel-small">
 <p><strong>Random forest test set performance:</strong></p>
@@ -927,7 +927,7 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 </div>
 
 <img data-src="assets/ro5_metrics.png" class="r-stretch"></section>
-<section id="ao5-interpretation" class="slide level2 importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
+<section id="ao5-interpretation" class="slide level2 dense-slide importance-slide" data-background-image="assets/importance-topic.png" data-background-size="cover" data-background-opacity="0.16">
 <h2>AO5: Interpretation</h2>
 <div class="content-panel panel-small">
 <p><strong>Purchase count (n_purchases):</strong> Overwhelmingly the strongest predictor, roughly 25 to 30 times higher importance than any age group category</p>
@@ -962,7 +962,9 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 <p><strong>Membership Status Predictor — Rosarie Maramag</strong></p>
 <p><a href="https://rmaramag.shinyapps.io/membership-shiny-app/">Open Interactive Membership Status Prediction Dashboard</a></p>
 <p><strong>Purpose:</strong> Enter a customer’s age, total spending, and purchase frequency to see the predicted membership status (Active, Pre-Create, or Left Club) and the model’s confidence in each outcome.</p>
-<p><strong>H&amp;M RFM Customer Value Predictor — Frank Renn</strong> <a href="https://f6hfd0-frank-renn.shinyapps.io/hm-rfm-predictor/">Open Future Customer Value Predictor</a> <strong>Purpose:</strong> Enter a customer’s recency, frequency, monetary, to predict the value of customers.</p>
+<p><strong>H&amp;M RFM Customer Value Predictor — Frank Renn</strong><br>
+<a href="https://f6hfd0-frank-renn.shinyapps.io/hm-rfm-predictor/">Open Future Customer Value Predictor</a><br>
+<strong>Purpose:</strong> Enter a customer’s recency, frequency, monetary, to predict the value of customers.</p>
 </div>
 
 </section>
