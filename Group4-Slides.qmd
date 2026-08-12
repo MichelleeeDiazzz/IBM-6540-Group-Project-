@@ -282,6 +282,27 @@ DV: `Membership Status` (Categorical: ACTIVE, PRE-CREATE, LEFT CLUB)
 **Model specification:** Multinomial logistic regression (`multinom_reg()` via the `nnet` engine), predicting membership status from age, total spend, and purchase frequency.
 
 :::
+```{r}
+#| echo: true
+#| eval: false
+
+model_recipe <- recipe(membership_status ~ age + total_spend + purchase_freq,
+                        data = customer_data) %>%
+  step_normalize(all_numeric_predictors())
+
+model_spec <- multinom_reg() %>%
+  set_engine("nnet") %>%
+  set_mode("classification")
+
+data_split <- initial_split(customer_data, prop = 0.8, strata = membership_status)
+train_data <- training(data_split)
+test_data  <- testing(data_split)
+
+final_model <- workflow() %>%
+  add_recipe(model_recipe) %>%
+  add_model(model_spec) %>%
+  fit(data = train_data)
+```
 
 ## AO2: Prediction and Model Evaluation {background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
@@ -681,6 +702,12 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 [Open Interactive XGBoost Prediction Dashboard](https://qnca96-gigi-brunel.shinyapps.io/hm-high-spender-predictor/)
 
 **Purpose:** Enter different customer characteristics to estimate the probability that an H&M customer will become a future high spender.
+
+**Membership Status Predictor — Rosarie Maramag**
+
+[Open Interactive Membership Status Prediction Dashboard](https://rmaramag.shinyapps.io/membership-shiny-app/)
+
+**Purpose:** Enter a customer's age, total spending, and purchase frequency to see the predicted membership status (Active, Pre-Create, or Left Club) and the model's confidence in each outcome.
 
 :::
 
