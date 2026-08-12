@@ -765,6 +765,34 @@ A heatmap of purchase frequency by day of week and segment, and a line chart sho
 **Business takeaway:** H&M's timing-based campaigns are better targeted using a customer's purchase history rather than their age bracket. Age alone is not a useful segment for timing predictions.
 :::
 
+
+## Conclusion {.importance-slide .dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16"}
+
+::: {.content-panel}
+
+### Key Findings
+
+- **Customer behavior was generally more informative than demographics**
+- Prior spending was the strongest signal for predicting future high spenders
+- Purchase frequency was more useful than total spending for identifying membership disengagement
+- **Product group mattered more than sales channel** when explaining spending
+- RFM models identified **Inactive and High Value** customers better than middle-value groups
+- Purchase count was far more useful than age for predicting purchase timing
+
+### Recommendations for H&M
+
+- Prioritize **purchase history, frequency, and customer value** when targeting campaigns
+- Use different strategies for **High Value, Mid/Low Value, and Inactive** customers
+- Use model predictions as **decision-support tools**, not exact customer classifications
+
+### Limitations & Future Research
+
+- Several models showed only **moderate or weak predictive performance**
+- Important factors such as promotions, preferences, loyalty behavior, and campaign response were not fully captured
+- Future models should incorporate richer behavioral features and additional customer interactions
+
+:::
+
 ## Appendix {.dense-slide background-image="assets/importance-topic.png" background-size="cover" background-opacity="0.16" .importance-slide}
 
 ::: {.content-panel .panel-small}
